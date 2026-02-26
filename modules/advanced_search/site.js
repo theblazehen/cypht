@@ -412,7 +412,7 @@ var adv_group_vals = function(data, type) {
 
 var send_requests = function(requests) {
     var request;
-    $('.msg-row', Hm_Utils.tbody()).remove();
+    $('tr', Hm_Utils.tbody()).remove();
     Hm_Utils.save_to_local_storage('formatted_advanced_search_data', '');
     adv_collapse();
     $('.adv_controls').hide();

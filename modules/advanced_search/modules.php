@@ -341,7 +341,7 @@ class Hm_Output_advanced_search_form_end extends Hm_Output_Module {
  */
 class Hm_Output_advanced_search_results_table_end extends Hm_Output_Module {
     protected function output() {
-        return '</div></div>';
+        return '</tbody></table>';
     }
 }
 

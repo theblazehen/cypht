@@ -197,7 +197,12 @@ class Hm_Output_history_page_link extends Hm_Output_Module {
 class Hm_Output_history_heading  extends Hm_Output_Module {
     protected function output() {
         $res = '<div class="content_title">'.$this->trans('Message history').'</div>'.
-            '<div class="history_content"><div class="message_table"><div class="message_table_body">';
+            '<div class="history_content"><table class="message_table">';
+        if (!$this->get('is_mobile')) {
+            $res .= '<colgroup><col class="source_col"><col class="from_col"><col '.
+                'class="subject_col"><col class="date_col"></colgroup><thead></thead>';
+        }
+        $res .= '<tbody>';
         return $res;
     }
 }
@@ -280,7 +285,7 @@ class Hm_Output_history_content  extends Hm_Output_Module {
  */
 class Hm_Output_history_footer  extends Hm_Output_Module {
     protected function output() {
-        $res = '</div></div></div>';
+        $res = '</tbody></table></div>';
         if (count($this->get('msg_history', array())) == 0) {
             $res .= '<div class="empty_list">'.$this->trans('So alone').'</div>';
         }

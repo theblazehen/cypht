@@ -9,7 +9,7 @@ function handleMessagesDragAndDrop() {
             sort: false,
             group: 'messages',
             ghostClass: 'table-secondary',
-            draggable: '.msg-row.email',
+            draggable: 'tr.email',
     
             onMove: (sortableEvent) => {
                 movingElement = sortableEvent.dragged;
@@ -30,7 +30,7 @@ function handleMessagesDragAndDrop() {
             },
     
             onEnd: (evt) => {
-                document.querySelectorAll('.message_table_body > .msg-row.table-secondary').forEach((row) => {
+                document.querySelectorAll('.message_table_body > tr.table-secondary').forEach((row) => {
                     row.classList.remove('table-secondary');
                 });
                 if (evt.type === 'touchend') {
@@ -56,7 +56,7 @@ function handleMessagesDragAndDrop() {
             const selectedRows = [];
     
             if(movingNumber > 1) {
-                document.querySelectorAll('.message_table_body > .msg-row').forEach(row => {
+                document.querySelectorAll('.message_table_body > tr').forEach(row => {
                     if (row.querySelector('.checkbox_cell input[type=checkbox]:checked')) {
                         selectedRows.push(row);
                     }
@@ -141,14 +141,14 @@ function alterDragImage(tableBody) {
         // Is the target element checked
         const isChecked = evt.target.querySelector('.checkbox_cell input[type=checkbox]:checked');
         if (isChecked) {
-            movingElements = document.querySelectorAll('.message_table_body > .msg-row > .checkbox_cell input[type=checkbox]:checked');
-            // Add a highlight class to the row
+            movingElements = document.querySelectorAll('.message_table_body > tr > .checkbox_cell input[type=checkbox]:checked');
+            // Add a highlight class to the tr
             movingElements.forEach((checkbox) => {
                 checkbox.parentElement.parentElement.classList.add('table-secondary');
             });
         } else {
             // If not, uncheck all other checked elements so that they don't get moved
-            document.querySelectorAll('.message_table_body > .msg-row > .checkbox_cell input[type=checkbox]:checked').forEach((checkbox) => {
+            document.querySelectorAll('.message_table_body > tr > .checkbox_cell input[type=checkbox]:checked').forEach((checkbox) => {
                 checkbox.checked = false;
             });
         }

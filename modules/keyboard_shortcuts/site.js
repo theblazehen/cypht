@@ -30,8 +30,8 @@ var ks_select_msg = function() {
 
 var ks_prev_msg_list = function() {
     var focused = $(document.activeElement);
-    if (!focused.hasClass('msg-row')) {
-        var row = $('.message_table_body .msg-row').last();
+    if (focused.prop('tagName').toLowerCase() != 'tr') {
+        var row = $('.message_table tbody tr').last();
         row.focus();
     }
     else {
@@ -42,7 +42,7 @@ var ks_prev_msg_list = function() {
 var ks_load_msg = function() {
     var focused = $(document.activeElement);
     var inline;
-    if (focused.hasClass('msg-row')) {
+    if (focused.prop('tagName').toLowerCase() == 'tr') {
         try {
             inline = inline_msg();
         }
@@ -60,8 +60,8 @@ var ks_load_msg = function() {
 
 var ks_next_msg_list = function() {
     var focused = $(document.activeElement);
-    if (!focused.hasClass('msg-row')) {
-        var row = $('.message_table_body .msg-row').first();
+    if (focused.prop('tagName').toLowerCase() != 'tr') {
+        var row = $('.message_table tbody tr').first();
         row.focus();
     }
     else {

@@ -1,142 +1,200 @@
 @charset "UTF-8";
 /*
- * Midnight — a cool blue-black dark theme for Cypht
- * Built on Bootswatch Darkly with a midnight-blue palette
- * and fixes for hardcoded light-mode colors in module CSS.
+ * Cypht "Midnight" Theme (safe pass)
+ * Keep Bootstrap/Darkly behavior intact and only override
+ * high-impact Cypht surfaces to avoid editor regressions.
  */
+
 @import url("../../../../../vendor/thomaspark/bootswatch/dist/darkly/bootstrap.min.css");
 
-/* ── Midnight palette ──────────────────────────────────────── */
 :root {
-  --bs-body-bg: #0d1117;
-  --bs-body-color: #e6edf3;
-  --bs-secondary-bg: #131720;
-  --bs-border-color: #2a3343;
-  --bs-input-placeholder-color: #8b949e;
-  --bs-form-bg: #161b22;
-  --bs-dropdown-bg: #1c2331;
-  --bs-dropdown-link-color: var(--bs-body-color);
-  --bs-dropdown-link-hover-bg: #26334a;
-  --midnight-surface: #161b22;
-  --midnight-border: #2a3343;
-  --midnight-hover: #1c2533;
-  --bs-tertiary-bg: rgba(255, 255, 255, 0.03);
-  --bs-secondary-color: #8b949e;
-  --bs-primary-bg-subtle: rgba(88, 166, 255, 0.1);
-  --bs-primary-border-subtle: rgba(88, 166, 255, 0.25);
+  --cy-bg-base: #181c22;
+  --cy-bg-surface: #1f232b;
+  --cy-bg-elevated: #262b35;
+  --cy-bg-hover: #2d3340;
+  --cy-bg-input: #1b2028;
+  --cy-border: #394150;
+  --cy-border-subtle: #2d3440;
+  --cy-text-primary: #d8dee7;
+  --cy-text-secondary: #9ba5b5;
+  --cy-text-muted: #7f8897;
+  --cy-accent: #5a9fd4;
+  --cy-accent-hover: #7ab4df;
+  --cy-accent-subtle: rgba(90, 159, 212, 0.18);
+
+  --bs-body-bg: var(--cy-bg-surface);
+  --bs-body-color: var(--cy-text-primary);
+  --bs-border-color: var(--cy-border);
+  --bs-link-color: var(--cy-accent);
+  --bs-link-hover-color: var(--cy-accent-hover);
+  --bs-secondary-bg: var(--cy-bg-base);
 }
 
-/* ── Darkly-inherited fixes ────────────────────────────────── */
-.text-secondary { color: #8b949e !important; }
-.form-floating > .form-control-plaintext ~ label,
-.form-floating > .form-control:focus ~ label,
-.form-floating > .form-control:not(:placeholder-shown) ~ label,
-.form-floating > .form-select ~ label {
-  color: var(--bs-input-placeholder-color) !important;
+html,
+body {
+  background-color: var(--cy-bg-base) !important;
+  color: var(--cy-text-primary) !important;
 }
 
-/* ── Bug #1: core/site.css message row hover contrast ── */
-.msg-row:hover { background-color: var(--midnight-hover); }
-
-/* ── Bug #2: core/site.css:336-343 — raw HTML form elements ──────── */
-/* Bootstrap-classed controls handled by core (1705-1711); bare elements are not */
-textarea,
-select:not(.form-select),
-input:not(.form-control):not(.form-check-input),
-button:not(.btn) {
-  background-color: var(--midnight-surface);
-  color: var(--bs-body-color);
-  border-color: var(--midnight-border);
+a {
+  color: var(--cy-accent);
 }
 
-/* ── Bug #3: core/site.css:462-468 — .not_found white box ────────── */
-.not_found {
-  background-color: var(--bs-body-bg);
-  color: var(--bs-body-color);
-  border-left-color: var(--midnight-border);
+a:hover {
+  color: var(--cy-accent-hover);
 }
 
-/* ── Bug #4: core/site.css:539-554 — checkbox cells ──────────────── */
-.checkbox_cell label {
-  background-color: var(--midnight-surface);
-  border-color: var(--midnight-border);
-}
-.checkbox_cell label:hover {
-  border-color: #8b949e;
-  background-color: var(--midnight-hover);
-}
-.checkbox_cell input[type="checkbox"]:checked + label {
-  background-color: var(--midnight-surface);
-  border-color: #008080;
-}
-
-/* ── Bug #5: core/site.css:1325-1327 — dragged element ───────────── */
-.dragged_element {
-  background-color: var(--midnight-surface) !important;
-  border-color: var(--midnight-border);
-}
-
-/* ── Bug #6: smtp/site.css:24 — draft list panel ─────────────────── */
-.draft_list {
-  background-color: var(--midnight-surface);
-  border-left-color: var(--midnight-border);
-  border-bottom-color: var(--midnight-border);
-}
-
-/* ── Bug #7: smtp/site.css:38-50 — compose bubble UI ─────────────── */
-.bubbles { background-color: var(--midnight-surface); }
-.bubble { border-color: var(--midnight-border); color: var(--bs-body-color); }
-.bubble:hover { background-color: var(--midnight-hover); }
-.bubble.bubble_selected { background-color: #1a3a5c; border-color: #3b82f6; }
-.bubble_dropdown-content {
-  background-color: var(--midnight-surface);
-  border-color: var(--midnight-border);
-}
-.bubble_dropdown-content ul li span,
-.bubble_dropdown-content ul li a { color: var(--bs-body-color); }
-.bubble_dropdown-content ul li span:hover,
-.bubble_dropdown-content ul li a:hover { background-color: var(--midnight-hover); }
-
-/* ── Bug #8: imap/site.css:502-507 — popup container ─────────────── */
-.popup > .popup-container {
-  background-color: var(--midnight-surface);
-  border-color: var(--midnight-border);
-  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 8px 0px;
-}
-
-/* ── Bug #9: imap_folders/site.css:4 — folder select dropdowns ──── */
-.draft_folder_select, .sent_folder_select, .trash_folder_select,
-.delete_folder_select, .rename_folder_select, .rename_parent_folder_select,
-.parent_folder_select, .archive_folder_select, .junk_folder_select {
-  background-color: var(--midnight-surface);
-  border-color: var(--midnight-border);
-}
-
-/* ── Contacts autocomplete panels ────────────────────────────────── */
-#cc_contacts, #bcc_contacts, #to_contacts {
-  background-color: var(--midnight-surface);
-  border-color: var(--midnight-border);
-}
-
-/* ── Sidebar styling for new layout ──────────────────────────────── */
 .folder_list {
-  border-right-color: var(--midnight-border);
-}
-.sidebar-footer {
-  border-top-color: var(--midnight-border);
-}
-.src_name {
-  color: #8b949e;
-}
-.src_name:hover {
-  background-color: var(--midnight-hover);
-}
-.folders li:hover {
-  background-color: var(--midnight-hover);
+  background-color: var(--cy-bg-surface) !important;
+  border-right: 1px solid var(--cy-border-subtle);
 }
 
-/* ── Content title sticky bar ────────────────────────────────────── */
+.folders li:hover {
+  background-color: var(--cy-bg-hover);
+}
+
+li.selected_menu {
+  background-color: var(--cy-accent-subtle) !important;
+}
+
+li.selected_menu a {
+  color: var(--cy-accent) !important;
+}
+
+.src_name {
+  border-bottom-color: var(--cy-border-subtle);
+}
+
+.content_cell,
+.message_list,
+.msg_text,
+.server_content,
+.profile_content,
+.user_settings,
+.search_content {
+  background-color: var(--cy-bg-elevated) !important;
+  color: var(--cy-text-primary) !important;
+}
+
 .content_title {
-  border-bottom-color: var(--midnight-border);
-  background-color: var(--bs-body-bg) !important;
+  border-color: var(--cy-border) !important;
+  color: var(--cy-text-primary);
+}
+
+.message_table > tbody > tr > td {
+  border-bottom-color: var(--cy-border-subtle);
+}
+
+.message_table > tbody > tr:hover > td {
+  background-color: var(--cy-bg-hover);
+}
+
+.from,
+.subject,
+.msg_text .js-header_subject {
+  color: var(--cy-text-primary) !important;
+}
+
+.msg_date,
+.source,
+.title,
+.list_controls,
+.text-secondary {
+  color: var(--cy-text-muted) !important;
+}
+
+.compose_page,
+.compose_container {
+  background-color: var(--cy-bg-elevated) !important;
+  border-color: var(--cy-border) !important;
+}
+
+.compose_to,
+.compose_bcc,
+.compose_cc,
+.compose_subject,
+.form-control,
+.form-select {
+  background-color: var(--cy-bg-input) !important;
+  border-color: var(--cy-border) !important;
+  color: var(--cy-text-primary) !important;
+}
+
+.form-control::placeholder {
+  color: var(--cy-text-muted) !important;
+}
+
+.form-control:focus,
+.form-select:focus,
+.compose_to:focus,
+.compose_bcc:focus,
+.compose_cc:focus,
+.compose_subject:focus {
+  background-color: var(--cy-bg-input) !important;
+  border-color: var(--cy-accent) !important;
+  box-shadow: 0 0 0 2px var(--cy-accent-subtle) !important;
+}
+
+.btn-primary,
+.smtp_send {
+  background-color: var(--cy-accent) !important;
+  border-color: var(--cy-accent) !important;
+}
+
+.btn-primary:hover,
+.smtp_send:hover {
+  background-color: var(--cy-accent-hover) !important;
+  border-color: var(--cy-accent-hover) !important;
+}
+
+.btn-light,
+.btn-secondary,
+.btn-outline-secondary {
+  background-color: var(--cy-bg-hover) !important;
+  border-color: var(--cy-border) !important;
+  color: var(--cy-text-primary) !important;
+}
+
+.btn-light:hover,
+.btn-secondary:hover,
+.btn-outline-secondary:hover {
+  background-color: #353d4a !important;
+  border-color: #4a5567 !important;
+}
+
+.dropdown-menu,
+.list_settings_dialog,
+.list_sources,
+.list_actions,
+#list_controls_menu,
+.modal-content,
+.confirm_logout,
+.draft_list {
+  background-color: var(--cy-bg-elevated) !important;
+  border-color: var(--cy-border) !important;
+}
+
+.dropdown-item {
+  color: var(--cy-text-primary) !important;
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
+  background-color: var(--cy-bg-hover) !important;
+}
+
+.total_unread_count,
+.unread_count {
+  background-color: var(--cy-accent) !important;
+  color: #fff !important;
+}
+
+#theme_setting,
+#timezone_setting {
+  background-color: var(--cy-bg-input) !important;
+  color: var(--cy-text-primary) !important;
+}
+
+.setting_description {
+  color: var(--cy-text-muted);
 }

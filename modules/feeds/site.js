@@ -90,7 +90,7 @@ var set_combined_feeds_state = function() {
 
 var display_feeds_combined = function(res) {
     Hm_Message_List.update(res.formatted_message_list);
-    $('.total').text($('.message_table_body .msg-row').length);
+    $('.total').text($('.message_table tbody tr').length);
 };
 
 var display_feeds_combined_inbox = function(res) {
@@ -140,7 +140,7 @@ var display_feed_item_content = function(res) {
 var load_feed_list = function(id) {
     var cached = Hm_Utils.get_from_local_storage(getListPathParam());
     if (cached) {
-        $('.message_table_body').html(cached);
+        $('.message_table tbody').html(cached);
     }
     Hm_Ajax.request(
         [{'name': 'hm_ajax_hook', 'value': 'ajax_feed_combined'},
@@ -156,7 +156,7 @@ var display_feed_list = function(res) {
     var key = 'feeds_'+res.feed_server_ids;
     var data = Hm_Message_List.filter_list();
     data.find('*[style]').attr('style', '');
-    $('.total').text($('.message_table_body .msg-row').length);
+    $('.total').text($('.message_table tbody tr').length);
     Hm_Utils.save_to_local_storage(key, data.html());
 };
 
@@ -315,3 +315,4 @@ function feedServersPageHandler() {
         $('.feed_section').css('display', dsp);
     }
 }
+

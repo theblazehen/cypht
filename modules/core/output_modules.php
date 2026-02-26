@@ -129,7 +129,7 @@ class Hm_Output_search_results_table_end extends Hm_Output_Module {
     /**
      */
     protected function output() {
-        return '</div></div>';
+        return '</tbody></table>';
     }
 }
 
@@ -1908,23 +1908,30 @@ class Hm_Output_message_list_start extends Hm_Output_Module {
      */
     protected function output() {
 
+        $col_flds = array();
         $header_flds = array();
         foreach ($this->get('message_list_fields', array()) as $vals) {
+            if ($vals[0]) {
+                $col_flds[] = sprintf('<col class="%s">', $vals[0]);
+            }
             if ($vals[1] && $vals[2]) {
-                $header_flds[] = sprintf('<div class="%s">%s</div>', $vals[1], $this->trans($vals[2]));
+                $header_flds[] = sprintf('<th class="%s">%s</th>', $vals[1], $this->trans($vals[2]));
             }
             else {
-                $header_flds[] = '<div></div>';
+                $header_flds[] = '<th></th>';
             }
         }
         $res = '<div class="p-3">';
-        $res .= '<div class="message_table">';
+        $res .= '<table class="message_table table">';
         if (!$this->get('no_message_list_headers')) {
+            if (!empty($col_flds)) {
+                $res .= '<colgroup>'.implode('', $col_flds).'</colgroup>';
+            }
             if (!empty($header_flds)) {
-                $res .= '<div class="message_table_head d-none">'.implode('', $header_flds).'</div>';
+                $res .= '<thead><tr>'.implode('', $header_flds).'</tr></thead>';
             }
         }
-        $res .= '<div class="message_table_body">';
+        $res .= '<tbody class="message_table_body">';
         return $res;
     }
 }
@@ -2031,7 +2038,7 @@ class Hm_Output_message_list_end extends Hm_Output_Module {
      * Close the table opened in Hm_Output_message_list_start
      */
     protected function output() {
-        $res = '</div></div></div></div>';
+        $res = '</tbody></table></div></div>';
         return $res;
     }
 }

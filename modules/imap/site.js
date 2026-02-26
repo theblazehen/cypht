@@ -199,8 +199,8 @@ var imap_unread_message = function(supplied_uid, supplied_detail) {
             [],
             false,
             function() {
-                var cache = $('<div></div>').append($(Hm_Utils.get_from_local_storage('formatted_unread_data')));
-                Hm_Message_List.adjust_unread_total($('.msg-row', cache).length, true);
+                var cache = $('<tbody></tbody>').append($(Hm_Utils.get_from_local_storage('formatted_unread_data')));
+                Hm_Message_List.adjust_unread_total($('tr', cache).length, true);
             }
         );
     }
@@ -412,7 +412,7 @@ async function select_imap_folder(path, page = 1, reload, processInTheBackground
             for (let row of messages.rows) {
                 row = $(row['0']);
                 const rowUid = row.data('uid');
-                const tableRow = Hm_Utils.tbody().find(`.msg-row[data-uid="${rowUid}"]`);
+                const tableRow = Hm_Utils.tbody().find(`tr[data-uid="${rowUid}"]`);
                 if (!tableRow.length) {
                     const index = messages.rows.map(r => $(r['0']).data('uid')).indexOf(rowUid);
                     if ((Hm_Utils.rows().length - 1) >= index) {
@@ -888,7 +888,7 @@ var imap_background_unread_content_result = function(res) {
     if (!$.isEmptyObject(res.folder_status)) {
         var detail = Hm_Utils.parse_folder_path(Object.keys(res.folder_status)[0], 'imap');
         var ids = [detail.server_id+'_'+detail.folder];
-        var cache = $('<div></div>').append($(Hm_Utils.get_from_local_storage('formatted_unread_data')));
+        var cache = $('<tbody></tbody>').append($(Hm_Utils.get_from_local_storage('formatted_unread_data')));
         globals.Hm_Background_Unread.update(ids, res.formatted_message_list, 'imap', cache);
         Hm_Utils.save_to_local_storage('formatted_unread_data', cache.html());
     }
@@ -1094,8 +1094,8 @@ var imap_background_unread_content = function(id, folder) {
         [],
         false,
         function() {
-            var cache = $('<div></div>').append($(Hm_Utils.get_from_local_storage('formatted_unread_data')));
-            Hm_Message_List.adjust_unread_total($('.msg-row', cache).length, true);
+            var cache = $('<tbody></tbody>').append($(Hm_Utils.get_from_local_storage('formatted_unread_data')));
+            Hm_Message_List.adjust_unread_total($('tr', cache).length, true);
         }
     );
     return false;

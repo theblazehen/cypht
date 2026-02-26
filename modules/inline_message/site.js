@@ -56,7 +56,7 @@ var msg_container = function(type, path) {
         $('.message_table').css('width', '50%');
     }
     else {
-        $(path).after('<div class="msg-row inline_msg"><div class="msg_text"></div></div>');
+        $(path).after('<tr class="inline_msg"><td colspan="6"><div class="msg_text"></div></td></tr>');
     }
     $(path).addClass('hl');
     $(path).removeClass('unseen');
@@ -66,12 +66,12 @@ var clear_open_msg = function(type) {
     if (type == 'right') {
         $('.msg_text').html('');
         $('.msg_text').remove();
-        $('.msg-row').removeClass('hl');
+        $('tr').removeClass('hl');
     }
     else {
         $('.inline_msg').html('');
         $('.inline_msg').remove();
-        $('.msg-row').removeClass('hl');
+        $('tr').removeClass('hl');
     }
 };
 
@@ -102,7 +102,7 @@ var msg_inline_close = function() {
         } else {
         $('.refresh_link').trigger('click');
         $('.inline_msg').remove();
-        $('.msg-row').removeClass('hl');
+        $('tr').removeClass('hl');
         }
     } else {
         window.history.back();
@@ -167,7 +167,7 @@ var capture_subject_click = function() {
 function inlineMessageMessageListAndSearchPageHandler(routeParams) {
     if (window.inline_msg && inline_msg()) {
         setTimeout(capture_subject_click, 100);
-        $('.msg-row').removeClass('hl');
+        $('tr').removeClass('hl');
         Hm_Ajax.add_callback_hook('*', capture_subject_click);
         Hm_Ajax.add_callback_hook('ajax_imap_delete_message', msg_inline_close);
         Hm_Ajax.add_callback_hook('ajax_imap_move_copy_action', msg_inline_close);
