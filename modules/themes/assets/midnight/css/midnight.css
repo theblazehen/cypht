@@ -1,61 +1,29 @@
 @charset "UTF-8";
-/* Cypht Midnight: Darkly base with minimal contrast fixes only */
+/*Bootswatch theme adapted by the Cypht Community for Cypht */
+/* Original Bootswatch information:
+ * Bootswatch v5.3.1 (https://bootswatch.com)
+ * Theme: darkly
+ * Copyright 2012-2023 Thomas Park
+ * Licensed under MIT
+ * Based on Bootstrap
+ */
+/*!
+ * Bootstrap  v5.3.1 (https://getbootstrap.com/)
+ * Copyright 2011-2023 The Bootstrap Authors
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+ */
 @import url("../../../../../vendor/thomaspark/bootswatch/dist/darkly/bootstrap.min.css");
 
 :root {
-  --bs-secondary-bg: #2b313a;
-  --bs-input-placeholder-color: #8f98a8;
+  --bs-secondary-bg: #333;
+  --bs-input-placeholder-color: #888;
 }
-
 .form-floating > .form-control-plaintext ~ label,
 .form-floating > .form-control:focus ~ label,
 .form-floating > .form-control:not(:placeholder-shown) ~ label,
 .form-floating > .form-select ~ label {
-  color: var(--bs-input-placeholder-color) !important;
+  color: #888 !important;
 }
-
 .text-secondary {
-  color: #aeb8c8 !important;
-}
-
-.not_found,
-.draft_list,
-.bubbles,
-.bubble_dropdown-content,
-.popup > .popup-container,
-.draft_folder_select,
-.sent_folder_select,
-.trash_folder_select,
-.delete_folder_select,
-.rename_folder_select,
-.rename_parent_folder_select,
-.parent_folder_select,
-.archive_folder_select,
-.junk_folder_select {
-  background-color: var(--bs-body-bg) !important;
-  border-color: var(--bs-border-color) !important;
-  color: var(--bs-body-color) !important;
-}
-
-.bubble,
-.bubble_dropdown-content ul li span,
-.bubble_dropdown-content ul li a {
-  color: var(--bs-body-color) !important;
-  border-color: var(--bs-border-color) !important;
-}
-
-.bubble:hover,
-.bubble_dropdown-content ul li span:hover,
-.bubble_dropdown-content ul li a:hover {
-  background-color: var(--bs-secondary-bg) !important;
-}
-
-.checkbox_cell label {
-  background-color: var(--bs-body-bg) !important;
-  border-color: var(--bs-border-color) !important;
-}
-
-.checkbox_cell input[type="checkbox"]:checked + label {
-  background-color: var(--bs-body-bg) !important;
-  border-color: #008080;
+    color: #adadad !important;
 }
