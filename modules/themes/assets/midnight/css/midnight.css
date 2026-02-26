@@ -1,13 +1,10 @@
 @charset "UTF-8";
-/* Cypht Midnight theme: Darkly base + contrast fixes */
+/* Cypht Midnight: Darkly base with minimal contrast fixes only */
 @import url("../../../../../vendor/thomaspark/bootswatch/dist/darkly/bootstrap.min.css");
 
 :root {
-  --bs-secondary-bg: #232a36;
-  --bs-body-bg: #1a202c;
-  --bs-body-color: #d7dfeb;
-  --bs-border-color: #394457;
-  --bs-input-placeholder-color: #8f9bb0;
+  --bs-secondary-bg: #2b313a;
+  --bs-input-placeholder-color: #8f98a8;
 }
 
 .form-floating > .form-control-plaintext ~ label,
@@ -50,7 +47,7 @@
 .bubble:hover,
 .bubble_dropdown-content ul li span:hover,
 .bubble_dropdown-content ul li a:hover {
-  background-color: #232a36 !important;
+  background-color: var(--bs-secondary-bg) !important;
 }
 
 .checkbox_cell label {
