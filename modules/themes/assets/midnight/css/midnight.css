@@ -15,15 +15,5 @@
 @import url("../../../../../vendor/thomaspark/bootswatch/dist/darkly/bootstrap.min.css");
 
 :root {
-  --bs-secondary-bg: #333;
-  --bs-input-placeholder-color: #888;
-}
-.form-floating > .form-control-plaintext ~ label,
-.form-floating > .form-control:focus ~ label,
-.form-floating > .form-control:not(:placeholder-shown) ~ label,
-.form-floating > .form-select ~ label {
-  color: #888 !important;
-}
-.text-secondary {
-    color: #adadad !important;
+  --bs-input-placeholder-color: var(--bs-secondary-color);
 }
