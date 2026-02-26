@@ -137,17 +137,17 @@ class Hm_Output_highlight_css extends Hm_Output_Module {
                 }
             }
             foreach ($ids as $id) {
-                $css[] = sprintf('.message_table %s td {%s: %s !important;}',
+                $css[] = sprintf('.message_table %s {%s: %s !important;}',
                     $id,
                     ($rule['target'] == 'text' ? 'color': 'background-color'),
                     $rule['color'], ($rule['important'] ? '!important' : '')
                 );
                 if ($rule['target'] == 'text') {
-                    $css[] = sprintf('.message_table %s td a {color: %s !important;}',
+                    $css[] = sprintf('.message_table %s a {color: %s !important;}',
                         $id, $rule['color'], ($rule['important'] ? '!important' : ''));
                 }
                 else {
-                    $css[] = sprintf('.message_table %s td div {background-color: %s !important;}',
+                    $css[] = sprintf('.message_table %s > div {background-color: %s !important;}',
                         $id, $rule['color'], ($rule['important'] ? '!important' : ''));
                 }
             }

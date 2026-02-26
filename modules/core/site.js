@@ -649,16 +649,16 @@ function Message_List() {
         var sort_result = listitems.sort(function(a, b) {
             const sortField = fld.replace('-', '');
             if (['arrival', 'date'].includes(sortField)) {
-                aval = new Date($(`input.${sortField}`, $('td.dates', a)).val());
-                bval = new Date($(`input.${sortField}`, $('td.dates', b)).val());
+                aval = new Date($(`input.${sortField}`, $('.dates', a)).val());
+                bval = new Date($(`input.${sortField}`, $('.dates', b)).val());
                 if (fld.startsWith('-')) {
                     return aval - bval;
                 }
                 return bval - aval;
             }
 
-            aval = $(`td.${sortField}`, a).text().replace(/^\s+/g, '');
-            bval = $(`td.${sortField}`, b).text().replace(/^\s+/g, '');
+            aval = $(`.${sortField}`, a).text().replace(/^\s+/g, '');
+            bval = $(`.${sortField}`, b).text().replace(/^\s+/g, '');
             if (fld.startsWith('-')) {
                 return bval.toUpperCase().localeCompare(aval.toUpperCase());
             }
@@ -681,7 +681,7 @@ function Message_List() {
         if (sort_fld == 4 || sort_fld == -4) {
             var timestr2;
             var timestr = $('.msg_timestamp', $(row)).val();
-            $('tr', msg_rows).each(function() {
+            $('.msg-row', msg_rows).each(function() {
                 timestr2 = $('.msg_timestamp', $(this)).val();
                 if ((sort_fld == -4 && (timestr2*1) >= (timestr*1)) ||
                     (sort_fld == 4 && (timestr*1) >= (timestr2*1))) {
@@ -692,9 +692,9 @@ function Message_List() {
         }
         else {
             var bval;
-            var aval = $($('td', $(row))[Math.abs(sort_fld)]).text().replace(/^\s+/g, '');
-            $('tr', msg_rows).each(function() {
-                bval = $($('td', $(this))[Math.abs(sort_fld)]).text().replace(/^\s+/g, '');
+            var aval = $($(row).children()[Math.abs(sort_fld)]).text().replace(/^\s+/g, '');
+            $('.msg-row', msg_rows).each(function() {
+                bval = $($(this).children()[Math.abs(sort_fld)]).text().replace(/^\s+/g, '');
                 if ((sort_fld < 0 && aval.toUpperCase().localeCompare(bval.toUpperCase()) > 0) ||
                    (sort_fld > 0 && bval.toUpperCase().localeCompare(aval.toUpperCase()) > 0)) {
                     element = $(this);
@@ -921,15 +921,15 @@ function Message_List() {
             document.title = count+' '+hm_trans('Flagged');
         }
         else if (list_path == 'combined_inbox') {
-            count = $('tr .unseen', tbody).length;
+            count = $('.msg-row .unseen', tbody).length;
             document.title = count+' '+hm_trans('Unread in Everything');
         }
         else if (list_path == 'email') {
-            count = $('tr .unseen', tbody).length;
+            count = $('.msg-row .unseen', tbody).length;
             document.title = count+' '+hm_trans('Unread in Email');
         }
         else if (list_path == 'feeds') {
-            count = $('tr .unseen', tbody).length;
+            count = $('.msg-row .unseen', tbody).length;
             document.title = count+' '+hm_trans('Unread in Feeds');
         }
     };
@@ -1104,7 +1104,7 @@ function Message_List() {
             }
             return true;
         });
-        var res = $('<tbody class="message_table_body"></tbody>');
+        var res = $('<div class="message_table_body"></div>');
         data.appendTo(res);
         return res;
     };
@@ -1731,7 +1731,7 @@ var Hm_Utils = {
     },
 
     rows: function() {
-        return this.tbody().find('tr').not('.inline_msg');
+        return this.tbody().find('.msg-row').not('.inline_msg');
     },
 
     tbody: function() {
@@ -2687,4 +2687,3 @@ window.addEventListener('page-change', () => {
         $("#cypht-upgrade-alert").addClass("hide");
     }
 })
-

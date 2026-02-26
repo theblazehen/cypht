@@ -212,7 +212,7 @@ function human_readable_interval($date_str) {
  */
 if (!hm_exists('message_list_row')) {
 function message_list_row($values, $id, $style, $output_mod, $row_class='', $msgId = '', $inReplyTo = '') {
-    $res = '<tr class="'.$output_mod->html_safe($id);
+    $res = '<div class="msg-row '.$output_mod->html_safe($id);
     if ($row_class) {
         $res .= ' '.$output_mod->html_safe($row_class);
     }
@@ -235,7 +235,7 @@ function message_list_row($values, $id, $style, $output_mod, $row_class='', $msg
     }
     
     if ($style == 'news') {
-        $res .= '<td class="news_cell checkbox_cell">';
+        $res .= '<div class="news_cell checkbox_cell">';
     }
     foreach ($values as $vals) {
         if (function_exists($vals[0])) {
@@ -244,9 +244,9 @@ function message_list_row($values, $id, $style, $output_mod, $row_class='', $msg
         }
     }
     if ($style == 'news') {
-        $res .= '</td>';
+        $res .= '</div>';
     }
-    $res .= '</tr>';
+    $res .= '</div>';
     return array($res, $id);
 }}
 
@@ -275,7 +275,7 @@ function safe_output_callback($vals, $style, $output_mod) {
     if ($style == 'news') {
         return sprintf('<div class="%s" data-title="%s">%s%s</div>', $output_mod->html_safe($vals[0]), $title, $img, $output_mod->html_safe($vals[1]));
     }
-    return sprintf('<td class="%s" data-title="%s">%s%s</td>', $output_mod->html_safe($vals[0]), $title, $img, $output_mod->html_safe($vals[1]));
+    return sprintf('<div class="%s" data-title="%s">%s%s</div>', $output_mod->html_safe($vals[0]), $title, $img, $output_mod->html_safe($vals[1]));
 }}
 
 /**
@@ -291,13 +291,13 @@ function checkbox_callback($vals, $style, $output_mod) {
     if ($style == 'news') {
         return sprintf('<input type="checkbox" id="%s" value="%s" />'.
             '<label class="checkbox_label" for="%s"></label>'.
-            '</td><td class="news_cell">', $output_mod->html_safe($vals[0]),
+            '</div><div class="news_cell">', $output_mod->html_safe($vals[0]),
             $output_mod->html_safe($vals[0]), $output_mod->html_safe($vals[0]));
     }
-    return sprintf('<td class="checkbox_cell">'.
+    return sprintf('<div class="checkbox_cell">'.
         '<input id="'.$output_mod->html_safe($vals[0]).'" type="checkbox" value="%s" />'.
         '<label class="checkbox_label" for="'.$output_mod->html_safe($vals[0]).'"></label>'.
-        '</td>', $output_mod->html_safe($vals[0]));
+        '</div>', $output_mod->html_safe($vals[0]));
 }}
 
 /**
@@ -347,9 +347,9 @@ function subject_callback($vals, $style, $output_mod) {
     }
 
     if ($output_mod->get('is_mobile')) {
-        return sprintf('<td class="subject"><div class="%s"> %s <a title="%s" href="%s">%s</a></div></td>', $output_mod->html_safe(implode(' ', $vals[2])), $icon_type_msg, $subject, $output_mod->html_safe($vals[1]), $hl_subject);
+        return sprintf('<div class="subject"><div class="%s"> %s <a title="%s" href="%s">%s</a></div></div>', $output_mod->html_safe(implode(' ', $vals[2])), $icon_type_msg, $subject, $output_mod->html_safe($vals[1]), $hl_subject);
     }
-    return sprintf('<td class="subject"><div class="%s"> %s <a title="%s" href="%s">%s</a><p class="fw-light">%s</p></div></td>', $output_mod->html_safe(implode(' ', $vals[2])), $icon_type_msg, $subject, $output_mod->html_safe($vals[1]), $hl_subject, $preview_msg);
+    return sprintf('<div class="subject"><div class="%s"> %s <a title="%s" href="%s">%s</a><p class="fw-light">%s</p></div></div>', $output_mod->html_safe(implode(' ', $vals[2])), $icon_type_msg, $subject, $output_mod->html_safe($vals[1]), $hl_subject, $preview_msg);
 }}
 
 /**
@@ -366,14 +366,14 @@ function date_callback($vals, $style, $output_mod) {
     if ($style == 'news') {
         return sprintf('<div class="msg_date%s">%s<input type="hidden" class="msg_timestamp" value="%s" /></div>', $delayed_class, $output_mod->html_safe($vals[0]), $output_mod->html_safe($vals[1]));
     }
-    return sprintf('<td class="msg_date%s" title="%s">%s<input type="hidden" class="msg_timestamp" value="%s" /></td>', $delayed_class, $output_mod->html_safe(date('r', $vals[1])), $output_mod->html_safe($vals[0]), $output_mod->html_safe($vals[1]));
+    return sprintf('<div class="msg_date%s" title="%s">%s<input type="hidden" class="msg_timestamp" value="%s" /></div>', $delayed_class, $output_mod->html_safe(date('r', $vals[1])), $output_mod->html_safe($vals[0]), $output_mod->html_safe($vals[1]));
 }}
 
 function dates_holders_callback($vals) {
-    $res = '<td class="dates d-none">';
+    $res = '<div class="dates d-none">';
     $res .= '<input type="hidden" name="arrival" class="arrival" value="'. $vals[0] .'" arial-label="Arrival date" />';
     $res .= '<input type="hidden" name="date" class="date" value="'. $vals[1] .'" arial-label="Sent date" />';
-    $res .= '</td>';
+    $res .= '</div>';
     return $res;
 }
 
@@ -410,7 +410,7 @@ function icon_callback($vals, $style, $output_mod) {
     if ($style == 'news') {
         return sprintf('<div class="icon" title="%s">%s</div>', $title, $icons);
     }
-    return sprintf('<td class="icon" title="%s">%s</td>', $title, $icons);
+    return sprintf('<div class="icon" title="%s">%s</div>', $title, $icons);
 }}
 
 /**
