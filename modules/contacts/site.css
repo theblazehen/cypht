@@ -271,12 +271,12 @@
 .contact-group .typography ol { list-style: none; margin: 20px 0 0 0; padding: 0; }
 .contact-group .typography li { position: relative; margin-top: 5px; padding-left: 20px; }
 .contact-group .typography li ul,.contact-group .typography li ol { margin-top: 5px; }
-.contact-group .typography ul li:before {content: '';position: absolute;top: 8px;left: 0;width: 6px;height: 4px;background: #404040;}
+.contact-group .typography ul li:before {content: '';position: absolute;top: 8px;left: 0;width: 6px;height: 4px;background: var(--bs-secondary-color);}
 .contact-group .typography ol { counter-reset: list1; }
 .contact-group .typography ol>li:before { counter-increment: list1; content: counter(list1)'.'; position: absolute; top: 0; left: 0; }
 .contact-group .typography a { text-decoration: underline; color: var(--bs-primary); }
 .contact-group .typography a:hover { text-decoration: none; }
-.contact-group .typography .pic { padding: 4px; border: 1px dotted #ccc; }
+.contact-group .typography .pic { padding: 4px; border: 1px dotted var(--bs-border-color); }
 .contact-group .typography .pic img { display: block; }
 .contact-group .typography .pic-right { float: right; margin: 0 0 10px 20px;}
 .contact-group .typography .link {text-decoration: underline;color: var(--bs-primary);cursor: pointer;}
@@ -308,11 +308,11 @@
 .contact-group>label:hover { background: var(--bs-secondary-bg); }
 .contact-group>input:checked+label { background: var(--bs-secondary-bg); }
 .contact-group>ul { background: var(--bs-body-bg);text-align: left; }
-.contact-group-steps>label:hover { background: #e5e5e5; }
+.contact-group-steps>label:hover { background: var(--bs-tertiary-bg); }
 
 .contact-group-theme-1>label { margin: 0 5px 5px 0;border-radius: 5px;background: var(--bs-body-bg);box-shadow: 0 2px rgba(0, 0, 0, 0.2);color: var(--bs-secondary-color);opacity: 0.8; }
 .contact-group-theme-1>label:hover { opacity: 1; }
-.contact-group-theme-1>input:checked+label { margin-bottom: 0; padding-bottom: 5px; border-bottom-right-radius: 0; border-bottom-left-radius: 0; color: 008080; opacity: 1; }
+.contact-group-theme-1>input:checked+label { margin-bottom: 0; padding-bottom: 5px; border-bottom-right-radius: 0; border-bottom-left-radius: 0; color: var(--bs-primary); opacity: 1; }
 .contact-group-theme-1>ul { border-radius: 5px; }
 .contact-group-theme-1>.tab-content-first:checked~ul { border-top-left-radius: 0; }
 @media screen and (max-width: 767px) {
