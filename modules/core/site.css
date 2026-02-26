@@ -295,8 +295,7 @@ td {
 .profile_content,
 .user_settings {
   position: relative;
-  display: table;
-  table-layout: fixed;
+  display: block;
   width: 100%;
   min-height: 500px;
   background: var(--bs-body-bg);
@@ -311,16 +310,14 @@ td {
 .user_settings table td {
   height: auto;
   vertical-align: middle;
-  padding: 5px;
-  padding-left: 37px;
-  padding-top: 10px;
+  padding: 0.75rem 1.25rem;
   color: var(--bs-body-color);
 }
 .reset_factory_button {
-  position: absolute;
-  bottom: 40px;
-  right: 10px;
-  margin-right: 37px;
+  position: relative;
+  bottom: auto;
+  right: auto;
+  margin-right: 0;
   cursor: pointer;
   color: var(--bs-secondary-color);
   font-size: 100%;
@@ -1808,5 +1805,299 @@ pre.msg_source {
   .mobile .msg_text .small_header > div.d-none + div { width: 100%; }
   .notices .definitive_actions {
     margin-left: 0 !important;
+  }
+}
+
+/* ===========================================================
+ * SETTINGS PAGE – Modern Card-Based Layout
+ * =========================================================== */
+
+/* Settings container: constrain width for readability */
+.user_settings {
+  max-width: 960px;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-bottom: 3rem !important;
+}
+
+/* Settings table: clean card wrapper */
+.settings_table {
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-bottom: 1.5rem;
+}
+
+.settings_table colgroup .label_col {
+  width: 38%;
+}
+.settings_table colgroup .setting_col {
+  width: 62%;
+}
+
+/* Section headers – card-style accordion headers */
+.settings_subtitle {
+  font-size: 0.95rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.01em;
+  padding: 0.85rem 1.25rem !important;
+  border-bottom: 2px solid var(--bs-border-color) !important;
+  border-radius: 8px 8px 0 0;
+  background-color: rgba(var(--bs-emphasis-color-rgb, 0, 0, 0), 0.04);
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+  user-select: none;
+}
+.settings_subtitle:hover {
+  background-color: rgba(var(--bs-emphasis-color-rgb, 0, 0, 0), 0.07);
+}
+.settings_subtitle i.bi {
+  opacity: 0.75;
+  transition: transform 0.2s ease;
+}
+
+/* Individual setting rows – clean form layout */
+.settings_table > tbody > tr > td:not(.settings_subtitle):not(.submit_cell) {
+  padding: 0.75rem 1.25rem !important;
+  border-bottom: 1px solid rgba(var(--bs-border-color-rgb, 222, 226, 230), 0.45);
+  vertical-align: middle;
+}
+
+/* Setting labels */
+.settings_table > tbody > tr > td:first-child label {
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: var(--bs-body-color);
+}
+
+/* Setting controls – keep them compact */
+.settings_table .form-select,
+.settings_table .form-control,
+.settings_table .form-check-input {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Search box in settings – modern search bar */
+.settings_table #settingsSearch {
+  max-width: 100%;
+  padding: 0.7rem 1rem 0.7rem 2.8rem;
+  font-size: 0.95rem;
+  border-radius: 10px;
+  border: 1.5px solid var(--bs-border-color);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%236c757d' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: 0.9rem center;
+  background-size: 16px 16px;
+}
+.settings_table #settingsSearch:focus {
+  border-color: var(--bs-primary);
+  box-shadow: 0 0 0 3px rgba(var(--bs-primary-rgb, 13, 110, 253), 0.15);
+}
+#noSettingsFound {
+  font-size: 0.9rem;
+  color: var(--bs-secondary-color);
+  padding: 0.5rem 0;
+}
+
+/* Save / Restore buttons area */
+.settings_table .submit_cell {
+  padding-top: 1.5rem !important;
+  padding-bottom: 1rem !important;
+  border-top: 2px solid var(--bs-border-color);
+}
+.settings_table .submit_cell .save_settings {
+  min-width: 140px;
+  padding: 0.55rem 1.5rem;
+  font-weight: 600;
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+
+/* Restore defaults button – reposition into flow */
+.user_settings > .px-3.d-flex {
+  padding-top: 0 !important;
+  padding-bottom: 1.5rem !important;
+}
+.reset_factory_button {
+  position: relative !important;
+  bottom: auto !important;
+  right: auto !important;
+  margin-right: 0 !important;
+  padding: 0.45rem 1.2rem !important;
+  border-radius: 8px !important;
+  font-size: 0.88rem !important;
+}
+
+/* Setting description text */
+.setting_description {
+  font-size: 0.82rem;
+  margin-top: 0.35rem;
+  opacity: 0.55;
+  line-height: 1.4;
+}
+
+/* ===========================================================
+ * HOME / WELCOME PAGE – Modern Onboarding Layout
+ * =========================================================== */
+
+/* Welcome card – hero onboarding card */
+.nux_welcome .card {
+  border: 1px solid var(--bs-border-color);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  transition: box-shadow 0.2s ease;
+}
+.nux_welcome .card:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+.nux_welcome .card-body {
+  padding: 1.75rem 2rem;
+}
+.nux_welcome .card-title h4 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+.nux_welcome .card-body > .mb-3 p {
+  font-size: 0.95rem;
+  opacity: 0.7;
+  margin-bottom: 0.75rem;
+}
+
+/* "Add an E-mail Account" – prominent CTA button */
+.nux_welcome .card-body > .mb-3 > a.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.5rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: 10px;
+  border: 1.5px solid var(--bs-primary);
+  color: var(--bs-primary);
+  background-color: rgba(var(--bs-primary-rgb, 13, 110, 253), 0.08);
+  transition: all 0.2s ease;
+}
+.nux_welcome .card-body > .mb-3 > a.btn:hover {
+  background-color: var(--bs-primary);
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(var(--bs-primary-rgb, 13, 110, 253), 0.25);
+  text-decoration: none;
+}
+.nux_welcome .card-body > .mb-3 > a.btn i.bi {
+  font-size: 1.15em;
+}
+
+/* Source status list – clean status cards */
+.nux_welcome ul {
+  list-style: none;
+  padding-left: 0 !important;
+  margin-top: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.nux_welcome ul li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.65rem 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--bs-border-color);
+  background-color: rgba(var(--bs-emphasis-color-rgb, 0, 0, 0), 0.02);
+  font-size: 0.9rem;
+  transition: background-color 0.15s ease;
+}
+.nux_welcome ul li:hover {
+  background-color: rgba(var(--bs-emphasis-color-rgb, 0, 0, 0), 0.05);
+}
+.nux_welcome ul li a {
+  font-weight: 600;
+  font-size: 0.85rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 6px;
+  background-color: rgba(var(--bs-primary-rgb, 13, 110, 253), 0.08);
+  color: var(--bs-primary);
+  float: none !important;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+.nux_welcome ul li a:hover {
+  background-color: var(--bs-primary);
+  color: #fff;
+  text-decoration: none;
+}
+
+/* Timezone notice */
+.nux_tz {
+  margin-top: 1.5rem !important;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  border-left: 3px solid var(--bs-info, #0dcaf0);
+  background-color: rgba(var(--bs-info-rgb, 13, 202, 240), 0.06);
+  font-size: 0.88rem;
+}
+.nux_tz a {
+  font-weight: 600;
+  margin-left: 0.5rem;
+}
+
+/* Help card – visually distinct */
+.nux_help .card {
+  border: 1px solid var(--bs-border-color);
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+}
+.nux_help .card-body {
+  padding: 1.75rem 2rem;
+  font-size: 0.92rem;
+  line-height: 1.7;
+  color: var(--bs-secondary-color);
+}
+.nux_help .card_title h4 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--bs-body-color);
+  margin-bottom: 0.75rem;
+}
+
+/* Dev news card */
+.nux_dev_news .card {
+  border: 1px solid var(--bs-border-color);
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+}
+
+/* ===========================================================
+ * GENERAL STRUCTURAL IMPROVEMENTS
+ * =========================================================== */
+
+/* Content cell main area – readable max-width */
+.content_cell > .row {
+  max-width: 1200px;
+  padding: 0.5rem 1rem;
+}
+
+/* Improve spacing in settings for desktop */
+@media (min-width: 768px) {
+  .settings_table > tbody > tr > td.d-block.d-md-table-cell:first-child {
+    width: 38%;
+    padding-right: 1.5rem !important;
+  }
+  .settings_table > tbody > tr > td.d-block.d-md-table-cell:last-child {
+    width: 62%;
+  }
+}
+
+/* Home page cards responsive layout */
+@media (min-width: 992px) {
+  main.content_cell > .row > .nux_welcome,
+  main.content_cell > .row > .home_password_dialogs {
+    max-width: 50%;
+  }
+  main.content_cell > .row > .nux_help {
+    max-width: 50%;
   }
 }

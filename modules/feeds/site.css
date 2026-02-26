@@ -1,17 +1,17 @@
 .feeds_setting, .feeds_section { display: none; }
 
 .msg_headers {
-    color: #777;
+    color: var(--bs-secondary-color);
     max-width: 100%;
 }
 
 .msg_headers .header_subject h4 {
-    color: #333;
+    color: var(--bs-body-color);
     font-size: 1.25rem;
 }
 
 .msg_headers .fw-semibold {
-    color: #555;
+    color: var(--bs-secondary-color);
     min-width: 80px;
 }
 

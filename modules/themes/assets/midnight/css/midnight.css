@@ -1018,3 +1018,160 @@ button {
 .deleted a {
   color: var(--cy-text-muted) !important;
 }
+
+/* ===========================================================
+ * SETTINGS PAGE – Midnight Dark Theme Enhancements
+ * =========================================================== */
+
+/* Section headers – accent-tinted dark card headers */
+.settings_subtitle {
+  background-color: var(--cy-accent-subtle) !important;
+  border-bottom-color: var(--cy-border) !important;
+  color: var(--cy-text-primary) !important;
+}
+.settings_subtitle:hover {
+  background-color: rgba(90, 159, 212, 0.25) !important;
+}
+.settings_subtitle i.bi {
+  color: var(--cy-accent);
+}
+
+/* Alternating row tints for settings rows */
+.settings_table > tbody > tr:not(:has(.settings_subtitle)):not(:has(.submit_cell)):nth-child(odd) > td {
+  background-color: rgba(255, 255, 255, 0.015);
+}
+.settings_table > tbody > tr:not(:has(.settings_subtitle)):not(:has(.submit_cell)):nth-child(even) > td {
+  background-color: rgba(255, 255, 255, 0.035);
+}
+.settings_table > tbody > tr:not(:has(.settings_subtitle)):hover > td {
+  background-color: var(--cy-bg-hover) !important;
+}
+
+/* Setting row border in dark mode */
+.settings_table > tbody > tr > td:not(.settings_subtitle):not(.submit_cell) {
+  border-bottom-color: var(--cy-border-subtle) !important;
+}
+
+/* Settings search box – dark input style */
+.settings_table #settingsSearch {
+  background-color: var(--cy-bg-input) !important;
+  border-color: var(--cy-border) !important;
+  color: var(--cy-text-primary) !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%237f8897' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0'/%3E%3C/svg%3E") !important;
+}
+.settings_table #settingsSearch::placeholder {
+  color: var(--cy-text-muted) !important;
+}
+.settings_table #settingsSearch:focus {
+  border-color: var(--cy-accent) !important;
+  box-shadow: 0 0 0 3px var(--cy-accent-subtle) !important;
+}
+
+/* Save button area – dark border */
+.settings_table .submit_cell {
+  border-top-color: var(--cy-border) !important;
+}
+
+/* Setting description in dark mode */
+.setting_description {
+  color: var(--cy-text-muted) !important;
+}
+
+/* ===========================================================
+ * HOME / WELCOME PAGE – Midnight Dark Theme Enhancements
+ * =========================================================== */
+
+/* Welcome card – elevated dark card with subtle glow */
+.nux_welcome .card {
+  background: linear-gradient(180deg, var(--cy-bg-elevated), color-mix(in srgb, var(--cy-bg-elevated) 92%, var(--cy-bg-base) 8%)) !important;
+  border-color: var(--cy-border) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.02) !important;
+}
+.nux_welcome .card:hover {
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.03) !important;
+}
+.nux_welcome .card-title h4 {
+  color: var(--cy-text-primary) !important;
+}
+.nux_welcome .card-body > .mb-3 p {
+  color: var(--cy-text-secondary) !important;
+}
+
+/* "Add an E-mail Account" – accent-colored prominent button */
+.nux_welcome .card-body > .mb-3 > a.btn {
+  border-color: var(--cy-accent) !important;
+  color: var(--cy-accent) !important;
+  background-color: var(--cy-accent-subtle) !important;
+}
+.nux_welcome .card-body > .mb-3 > a.btn:hover {
+  background: linear-gradient(180deg, var(--cy-accent-hover), var(--cy-accent)) !important;
+  color: #fff !important;
+  border-color: var(--cy-accent-hover) !important;
+  box-shadow: 0 8px 24px rgba(90, 159, 212, 0.3) !important;
+}
+
+/* Status list items – clean dark cards */
+.nux_welcome ul li {
+  background-color: var(--cy-bg-surface) !important;
+  border-color: var(--cy-border-subtle) !important;
+  color: var(--cy-text-secondary) !important;
+}
+.nux_welcome ul li:hover {
+  background-color: var(--cy-bg-hover) !important;
+  border-color: var(--cy-border) !important;
+}
+.nux_welcome ul li a {
+  background-color: var(--cy-accent-subtle) !important;
+  color: var(--cy-accent) !important;
+}
+.nux_welcome ul li a:hover {
+  background-color: var(--cy-accent) !important;
+  color: #fff !important;
+}
+
+/* Timezone notice – dark info bar */
+.nux_tz {
+  background-color: rgba(90, 159, 212, 0.08) !important;
+  border-left-color: var(--cy-accent) !important;
+  color: var(--cy-text-secondary) !important;
+}
+.nux_tz a {
+  color: var(--cy-accent) !important;
+}
+
+/* Help card – dark, slightly lighter */
+.nux_help .card {
+  background-color: var(--cy-bg-surface) !important;
+  border-color: var(--cy-border-subtle) !important;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25) !important;
+}
+.nux_help .card-body {
+  color: var(--cy-text-secondary) !important;
+}
+.nux_help .card_title h4 {
+  color: var(--cy-text-primary) !important;
+}
+
+/* Dev news card – dark */
+.nux_dev_news .card {
+  background-color: var(--cy-bg-surface) !important;
+  border-color: var(--cy-border-subtle) !important;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25) !important;
+}
+
+/* Home password dialogs card */
+.home_password_dialogs .card {
+  background-color: var(--cy-bg-elevated) !important;
+  border-color: var(--cy-border) !important;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* ===========================================================
+ * GENERAL – Midnight Structural Enhancements
+ * =========================================================== */
+
+/* Content cell padding enhancement */
+.content_cell > .row {
+  padding: 0.5rem 1.25rem;
+}

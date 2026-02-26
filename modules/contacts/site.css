@@ -21,7 +21,7 @@
     padding-bottom: 5px;
     vertical-align: -5px;
     padding-top: 5px;
-    border-bottom: solid 1px #ddd;
+    border-bottom: solid 1px var(--bs-border-color);
 }
 
 .gmail_contacts {
@@ -70,8 +70,8 @@
     display: none;
     margin-top: -5px;
     position: absolute;
-    background-color: #fff;
-    border: solid 1px #ddd;
+    background-color: var(--bs-body-bg);
+    border: solid 1px var(--bs-border-color);
     padding: 10px;
     border-radius: 3px 3px 3px 3px;
     border-top: none;
@@ -84,14 +84,14 @@
 
 .no_contact_sources {
     text-align: center;
-    color: #999;
+    color: var(--bs-tertiary-color);
     font-size: 110%;
     margin-top: 60px;
 }
 
 .add_contact_responsive {
     margin: 10px 0;
-    color: #666;
+    color: var(--bs-secondary-color);
     width: 100%;
     box-sizing: border-box;
     float: none;
@@ -253,13 +253,13 @@
 .contact-group .grid-col-offset-4:first-child { margin-left: 68%; }
 .contact-group .grid-col-offset-5:first-child { margin-left: 85%; }
 
-.contact-group .typography { color: #666; }
+.contact-group .typography { color: var(--bs-secondary-color); }
 .contact-group .typography h1,
 .contact-group .typography h2,
 .contact-group .typography h3,
 .contact-group .typography h4,
 .contact-group .typography h5,
-.contact-group .typography h6 { margin: 40px 0 0 0; padding: 0; text-align: left; color: #333; }
+.contact-group .typography h6 { margin: 40px 0 0 0; padding: 0; text-align: left; color: var(--bs-body-color); }
 .contact-group .typography h1 { font-size: 40px; line-height: 60px; text-shadow: 3px 3px rgba(0, 0, 0, 0.1); }
 .contact-group .typography h2 { font-size: 32px; line-height: 48px; text-shadow: 2px 2px rgba(0, 0, 0, 0.1); }
 .contact-group .typography h3 { font-size: 26px;line-height: 38px;text-shadow: 1px 1px rgba(0, 0, 0, 0.1); }
@@ -274,12 +274,12 @@
 .contact-group .typography ul li:before {content: '';position: absolute;top: 8px;left: 0;width: 6px;height: 4px;background: #404040;}
 .contact-group .typography ol { counter-reset: list1; }
 .contact-group .typography ol>li:before { counter-increment: list1; content: counter(list1)'.'; position: absolute; top: 0; left: 0; }
-.contact-group .typography a { text-decoration: underline; color: #008080; }
+.contact-group .typography a { text-decoration: underline; color: var(--bs-primary); }
 .contact-group .typography a:hover { text-decoration: none; }
 .contact-group .typography .pic { padding: 4px; border: 1px dotted #ccc; }
 .contact-group .typography .pic img { display: block; }
 .contact-group .typography .pic-right { float: right; margin: 0 0 10px 20px;}
-.contact-group .typography .link {text-decoration: underline;color: #008080;cursor: pointer;}
+.contact-group .typography .link {text-decoration: underline;color: var(--bs-primary);cursor: pointer;}
 .contact-group .typography .link:hover {text-decoration: none;}
 .contact-group .typography h1:first-child,.contact-group .typography h2:first-child,.contact-group .typography h3:first-child,.contact-group .typography h4:first-child,.contact-group .typography h5:first-child,.contact-group .typography h6:first-child,.contact-group .typography p:first-child { margin-top: 0; }
 .contact-group .typography .text-center { text-align: center; }
@@ -304,13 +304,13 @@
     .contact-group>.right { float: none; }
 }
 
-.contact-group>label { padding: 0 20px; background: #e5e5e5; font-size: 13px; line-height: 49px; }
-.contact-group>label:hover { background: #f2f2f2; }
-.contact-group>input:checked+label { background: #f2f2f2; }
-.contact-group>ul { background: #fff;text-align: left; }
+.contact-group>label { padding: 0 20px; background: var(--bs-tertiary-bg); font-size: 13px; line-height: 49px; }
+.contact-group>label:hover { background: var(--bs-secondary-bg); }
+.contact-group>input:checked+label { background: var(--bs-secondary-bg); }
+.contact-group>ul { background: var(--bs-body-bg);text-align: left; }
 .contact-group-steps>label:hover { background: #e5e5e5; }
 
-.contact-group-theme-1>label { margin: 0 5px 5px 0;border-radius: 5px;background: #fff;box-shadow: 0 2px rgba(0, 0, 0, 0.2);color: #808080;opacity: 0.8; }
+.contact-group-theme-1>label { margin: 0 5px 5px 0;border-radius: 5px;background: var(--bs-body-bg);box-shadow: 0 2px rgba(0, 0, 0, 0.2);color: var(--bs-secondary-color);opacity: 0.8; }
 .contact-group-theme-1>label:hover { opacity: 1; }
 .contact-group-theme-1>input:checked+label { margin-bottom: 0; padding-bottom: 5px; border-bottom-right-radius: 0; border-bottom-left-radius: 0; color: 008080; opacity: 1; }
 .contact-group-theme-1>ul { border-radius: 5px; }
