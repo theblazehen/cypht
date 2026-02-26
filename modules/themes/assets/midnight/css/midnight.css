@@ -1175,3 +1175,261 @@ button {
 .content_cell > .row {
   padding: 0.5rem 1.25rem;
 }
+
+/* --- Navigation polish (midnight-specific) --- */
+.menu_search input {
+  background-color: var(--cy-bg-input) !important;
+  border-color: var(--cy-border) !important;
+  color: var(--cy-text-primary) !important;
+}
+
+.menu_search input::placeholder {
+  color: var(--cy-text-muted) !important;
+}
+
+.menu_search input:focus {
+  border-color: var(--cy-accent) !important;
+  box-shadow: 0 0 0 2px var(--cy-accent-subtle) !important;
+}
+
+.inner_list li:hover {
+  background-color: var(--cy-bg-hover) !important;
+}
+
+/* Subtle divider between sidebar sections */
+.src_name {
+  position: relative;
+}
+
+.src_name::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 15%;
+  right: 15%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--cy-border-subtle), transparent);
+}
+
+.src_name[aria-expanded="true"]::after {
+  display: none;
+}
+
+/* ===========================================================
+ * TASK 1: MESSAGE READING VIEW – Midnight Dark Theme
+ * =========================================================== */
+
+/* Headers – surface-level dark card */
+.imap_envelope {
+  background-color: var(--cy-bg-surface) !important;
+  border-color: var(--cy-border-subtle) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+}
+
+.imap_envelope th {
+  color: var(--cy-text-muted) !important;
+}
+
+.imap_envelope td {
+  color: var(--cy-text-primary) !important;
+}
+
+/* Subject in dark mode */
+.header_subject th {
+  color: var(--cy-text-primary) !important;
+}
+
+/* Message body – elevated background */
+.msg_text_inner {
+  background-color: var(--cy-bg-elevated);
+  border-radius: 8px;
+  color: var(--cy-text-primary) !important;
+}
+
+/* Separator between header and body */
+.imap_envelope + .msg_text_inner,
+.msg_headers + .msg_text_inner {
+  border-top-color: var(--cy-border-subtle) !important;
+}
+
+/* Attachment table – dark rows with hover */
+.msg_parts {
+  border-top-color: var(--cy-border-subtle) !important;
+  background-color: var(--cy-bg-surface);
+  border-radius: 0 0 8px 8px;
+}
+
+.msg_parts tr:hover {
+  background-color: var(--cy-bg-hover) !important;
+}
+
+.msg_parts td {
+  border-bottom-color: var(--cy-border-subtle) !important;
+  color: var(--cy-text-secondary) !important;
+}
+
+.msg_parts td a {
+  color: var(--cy-accent) !important;
+}
+
+.msg_parts td a:hover {
+  color: var(--cy-accent-hover) !important;
+}
+
+/* Action links – accent pill buttons */
+.header_links {
+  border-top-color: var(--cy-border-subtle) !important;
+}
+
+.header_links a:not(.dropdown-item):not(.dropdown-toggle) {
+  border-color: var(--cy-border) !important;
+  color: var(--cy-text-secondary) !important;
+  background-color: transparent !important;
+}
+
+.header_links a:not(.dropdown-item):not(.dropdown-toggle):hover {
+  background-color: var(--cy-accent) !important;
+  color: #fff !important;
+  border-color: var(--cy-accent) !important;
+  box-shadow: 0 4px 12px rgba(90, 159, 212, 0.25);
+}
+
+/* Action buttons in toolbar – accent colors */
+.msg_controls .btn-light,
+.msg_controls .btn-secondary,
+.msg_controls .btn-outline-secondary {
+  border-color: var(--cy-border) !important;
+  color: var(--cy-accent) !important;
+  background-color: transparent !important;
+}
+
+.msg_controls .btn-light:hover,
+.msg_controls .btn-secondary:hover,
+.msg_controls .btn-outline-secondary:hover {
+  background-color: var(--cy-accent) !important;
+  color: #fff !important;
+  border-color: var(--cy-accent) !important;
+}
+
+/* Inline message view – accent divider */
+.inline_right .msg_text {
+  border-left-color: var(--cy-accent) !important;
+}
+
+/* ===========================================================
+ * TASK 2: EMPTY STATES – Midnight Dark Theme
+ * =========================================================== */
+
+.empty_list,
+.no_servers,
+.no_contact_sources,
+.nux_empty_combined_view {
+  color: var(--cy-text-muted) !important;
+}
+
+/* Pseudo-element icon – subtle dark tint */
+.empty_list::before,
+.no_servers::before,
+.no_contact_sources::before,
+.nux_empty_combined_view::before {
+  background-color: rgba(255, 255, 255, 0.04) !important;
+  opacity: 0.45;
+}
+
+.empty_list a,
+.no_servers a,
+.no_contact_sources a,
+.nux_empty_combined_view a {
+  color: var(--cy-accent) !important;
+}
+
+.empty_list a:hover,
+.no_servers a:hover,
+.no_contact_sources a:hover,
+.nux_empty_combined_view a:hover {
+  color: var(--cy-accent-hover) !important;
+}
+
+/* ===========================================================
+ * TASK 3: MESSAGE LIST ROW POLISH – Midnight
+ * =========================================================== */
+
+/* Unread indicator – accent color left border */
+.message_table > tbody > tr.unseen > td:first-child {
+  box-shadow: inset 3px 0 0 var(--cy-accent) !important;
+}
+
+/* Row hover – subtle but clear */
+.message_table > tbody > tr:hover > td {
+  background-color: var(--cy-bg-hover) !important;
+}
+
+/* Selected/active row – accent tint */
+.message_table > tbody > tr.selected > td,
+.message_table > tbody > tr.active > td {
+  background-color: var(--cy-accent-subtle) !important;
+  box-shadow: inset 3px 0 0 var(--cy-accent);
+}
+
+/* Unread row text emphasis */
+.unseen .from,
+.unseen .subject {
+  color: var(--cy-text-primary) !important;
+}
+
+/* Subject preview in list */
+.subject div {
+  color: var(--cy-text-muted) !important;
+}
+
+/* Date column muted */
+.msg_date {
+  color: var(--cy-text-muted) !important;
+}
+
+/* Icon hover brightness */
+.message_table > tbody > tr:hover .icon img {
+  opacity: 0.9 !important;
+  filter: brightness(1.2);
+}
+
+/* ===========================================================
+ * TASK 4: ALERT/TOAST STYLING – Midnight
+ * =========================================================== */
+
+/* Override Bootstrap utility bg-white for dark theme */
+.alert.bg-white {
+  background-color: var(--cy-bg-elevated) !important;
+  color: var(--cy-text-primary) !important;
+  border-color: var(--cy-border) !important;
+}
+
+/* General alert styling for midnight */
+.alert {
+  border-radius: 10px;
+  border-color: var(--cy-border);
+}
+
+.alert-warning {
+  background-color: rgba(255, 193, 7, 0.12) !important;
+  border-color: rgba(255, 193, 7, 0.3) !important;
+  color: #ffc107 !important;
+}
+
+.alert-danger {
+  background-color: rgba(220, 53, 69, 0.12) !important;
+  border-color: rgba(220, 53, 69, 0.3) !important;
+  color: #f8717f !important;
+}
+
+.alert-success {
+  background-color: rgba(25, 135, 84, 0.12) !important;
+  border-color: rgba(25, 135, 84, 0.3) !important;
+  color: #59d89e !important;
+}
+
+.alert-info {
+  background-color: var(--cy-accent-subtle) !important;
+  border-color: rgba(90, 159, 212, 0.3) !important;
+  color: var(--cy-accent-hover) !important;
+}

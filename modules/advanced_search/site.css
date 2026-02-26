@@ -4,7 +4,7 @@
 .adv_expand_all { display: none; }
 #adv_search { cursor: pointer; }
 .source_count, .time_count, .target_count, .other_count, .term_count { display: none; float: right; margin-right: 30px; }
-.imap_support_required { padding: 100px; text-align: center; font-size: 120%; color: #666; }
+.imap_support_required { padding: 100px; text-align: center; font-size: 120%; color: var(--bs-secondary-color); }
 .adv_reset { margin-left: 20px; cursor: pointer; }
 .adv_search_link { margin-left: 20px; }
 .adv_terms { margin-left: 10px; }

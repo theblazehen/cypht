@@ -19,7 +19,7 @@
 /* .nux_welcome ul { margin-top: 30px; } */
 /* .nux_try_out { display: block; text-align: center; margin: auto; margin-top: 10px; } */
 .nux_tz {  margin-top: 30px; }
-.nux_empty_combined_view { display: none; text-align: center; padding-top: 100px; color: #666; }
+.nux_empty_combined_view { display: none; text-align: center; padding-top: 100px; color: var(--bs-secondary-color); }
 .quick_add_multiple_server_form input { margin: 5px; margin-left: 0px; }
 .quick_add_multiple_server_form { padding-top: 10px; display: block; }
 /* .quick_add_multiple_server_form .server_form { display: none; } */

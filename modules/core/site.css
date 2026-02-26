@@ -2101,3 +2101,325 @@ pre.msg_source {
     max-width: 50%;
   }
 }
+
+/* Navigation bar polish */
+nav.folder_cell {
+  display: flex;
+  flex-direction: column;
+}
+
+.folder_list {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+/* Search box in sidebar */
+.menu_search {
+  padding: 0.5rem 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.menu_search input {
+  width: 100%;
+  border-radius: 8px;
+  padding: 0.4rem 0.75rem;
+  font-size: 0.85rem;
+  border: 1px solid var(--bs-border-color);
+  background: var(--bs-body-bg);
+  color: var(--bs-body-color);
+}
+
+.menu_search input::placeholder {
+  color: var(--bs-tertiary-color);
+}
+
+.menu_search input:focus {
+  outline: none;
+  border-color: var(--bs-link-color);
+  box-shadow: 0 0 0 2px rgba(var(--bs-link-color-rgb, 90, 159, 212), 0.2);
+}
+
+/* Make folder items have consistent spacing */
+.folders > li {
+  margin: 1px 0;
+}
+
+/* Inner list items (subfolders) */
+.inner_list li {
+  padding: 0.2rem 0.35rem;
+  border-radius: var(--bs-border-radius);
+}
+
+.inner_list li:hover {
+  background-color: var(--bs-tertiary-bg);
+}
+
+/* Sidebar section collapse/expand caret */
+.src_name > i {
+  display: inline-block;
+  transition: transform 0.2s ease;
+  margin-right: 0.25rem;
+  font-size: 0.7rem;
+  opacity: 0.5;
+}
+
+.src_name:hover > i {
+  opacity: 0.8;
+}
+
+/* ===========================================================
+ * TASK 1: MESSAGE READING VIEW – Polish
+ * =========================================================== */
+
+/* Message header card styling */
+.imap_envelope {
+  background-color: rgba(var(--bs-emphasis-color-rgb, 0, 0, 0), 0.02);
+  border-radius: 10px;
+  padding: 1rem 1.25rem !important;
+  margin: 0.5rem 0 0 0 !important;
+  border: 1px solid rgba(var(--bs-border-color-rgb, 222, 226, 230), 0.5);
+}
+
+.imap_envelope th {
+  color: var(--bs-secondary-color);
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  padding-right: 1rem !important;
+  white-space: nowrap;
+  vertical-align: baseline;
+}
+
+.imap_envelope td {
+  color: var(--bs-body-color);
+  padding-top: 0.35rem !important;
+  padding-bottom: 0.35rem !important;
+}
+
+/* Subject line – prominent */
+.header_subject th {
+  font-size: 1.4em !important;
+  font-weight: 700 !important;
+  line-height: 1.35;
+  padding-top: 0.5rem !important;
+  padding-bottom: 0.5rem !important;
+  letter-spacing: -0.01em;
+}
+
+/* Separator between header and body */
+.imap_envelope + .msg_text_inner,
+.msg_headers + .msg_text_inner {
+  border-top: 1px solid var(--bs-border-color);
+  padding-top: 1.25rem !important;
+  margin-top: 0.75rem;
+}
+
+/* Message body – comfortable reading width */
+.msg_text_inner {
+  max-width: 72ch;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.7;
+  padding: 1.25rem 1.5rem !important;
+}
+
+/* Attachment table – clean styling */
+.msg_parts {
+  border-top: 1px solid var(--bs-border-color);
+  border-radius: 0 0 8px 8px;
+  margin-top: 1rem;
+  padding: 0.75rem 1rem !important;
+}
+
+.msg_parts tr {
+  transition: background-color 0.15s ease;
+  border-radius: 6px;
+}
+
+.msg_parts tr:hover {
+  background-color: rgba(var(--bs-emphasis-color-rgb, 0, 0, 0), 0.04);
+}
+
+.msg_parts td {
+  padding: 0.5rem 0.75rem !important;
+  border-bottom: 1px solid rgba(var(--bs-border-color-rgb, 222, 226, 230), 0.35);
+  font-size: 0.9rem;
+  vertical-align: middle;
+}
+
+.msg_parts tr:last-child td {
+  border-bottom: none;
+}
+
+/* Action links – modern pill buttons */
+.header_links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0.75rem 0 !important;
+  border-top: 1px solid rgba(var(--bs-border-color-rgb, 222, 226, 230), 0.5);
+  margin-top: 0.5rem;
+}
+
+.header_links a:not(.dropdown-item):not(.dropdown-toggle) {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-decoration: none;
+  border: 1px solid var(--bs-border-color);
+  color: var(--bs-body-color);
+  background-color: transparent;
+  transition: all 0.18s ease;
+  font-variant: normal;
+  text-transform: none;
+}
+
+.header_links a:not(.dropdown-item):not(.dropdown-toggle):hover {
+  background-color: var(--bs-primary);
+  color: #fff;
+  border-color: var(--bs-primary);
+  text-decoration: none;
+}
+
+/* Inline message view – left border accent */
+.inline_right .msg_text {
+  border-left: 3px solid var(--bs-primary);
+  padding-left: 1rem !important;
+  margin-left: 0.5rem;
+}
+
+/* Message controls toolbar */
+.msg_controls .btn {
+  border-radius: 8px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  transition: all 0.18s ease;
+}
+
+/* ===========================================================
+ * TASK 2: EMPTY STATES – Friendly Centered Design
+ * =========================================================== */
+
+.empty_list,
+.no_servers,
+.no_contact_sources,
+.nux_empty_combined_view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 280px;
+  padding: 3rem 2rem;
+  color: var(--bs-tertiary-color);
+}
+
+.empty_list {
+  font-size: 1.15rem !important;
+  font-style: normal !important;
+}
+
+.no_servers,
+.no_contact_sources,
+.nux_empty_combined_view {
+  font-size: 1.1rem;
+}
+
+/* Pseudo-element icon above text for visual weight */
+.empty_list::before,
+.no_servers::before,
+.no_contact_sources::before,
+.nux_empty_combined_view::before {
+  content: "";
+  display: block;
+  width: 72px;
+  height: 72px;
+  margin-bottom: 1.25rem;
+  border-radius: 50%;
+  background-color: rgba(var(--bs-emphasis-color-rgb, 0, 0, 0), 0.04);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' fill='%236c757d' viewBox='0 0 16 16'%3E%3Cpath d='M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 32px 32px;
+  opacity: 0.5;
+  flex-shrink: 0;
+}
+
+/* Unique icons per empty state */
+.empty_list::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' fill='%236c757d' viewBox='0 0 16 16'%3E%3Cpath d='M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741M1 11.105l4.708-2.897L1 5.383z'/%3E%3C/svg%3E");
+}
+
+.no_contact_sources::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' fill='%236c757d' viewBox='0 0 16 16'%3E%3Cpath d='M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z'/%3E%3C/svg%3E");
+}
+
+.empty_list a,
+.no_servers a,
+.no_contact_sources a,
+.nux_empty_combined_view a {
+  margin-top: 0.75rem;
+  font-weight: 600;
+  color: var(--bs-primary);
+}
+
+/* ===========================================================
+ * TASK 3: MESSAGE LIST ROW POLISH
+ * =========================================================== */
+
+/* Breathing room for message rows */
+.message_table > tbody > tr > td {
+  padding: 0.6rem 0.75rem !important;
+  transition: background-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+/* Hover – smooth transition */
+.message_table > tbody > tr:hover > td {
+  background-color: rgba(var(--bs-emphasis-color-rgb, 0, 0, 0), 0.04);
+}
+
+/* Unread indicator – bold left border */
+.message_table > tbody > tr.unseen > td:first-child {
+  box-shadow: inset 3px 0 0 var(--bs-primary);
+}
+
+div.unseen,
+.unseen .from,
+.unseen .subject {
+  font-weight: 700;
+}
+
+/* Subject preview text – clearly secondary */
+.subject div {
+  font-size: 0.88em;
+  opacity: 0.6;
+  font-weight: 400 !important;
+  margin-top: 2px;
+  line-height: 1.4;
+}
+
+/* Date – right-aligned and compact */
+.msg_date {
+  font-size: 0.82rem;
+  text-align: right;
+  white-space: nowrap;
+  color: var(--bs-secondary-color);
+}
+
+/* Icon column spacing */
+.icon img,
+.icon i {
+  opacity: 0.55;
+  transition: opacity 0.15s ease;
+}
+
+.message_table > tbody > tr:hover .icon img,
+.message_table > tbody > tr:hover .icon i {
+  opacity: 0.85;
+}
