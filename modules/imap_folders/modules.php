@@ -338,7 +338,7 @@ class Hm_Output_folders_server_select extends Hm_Output_Module {
     protected function output() {
         $server_id = $this->get('folder_server', '');
         $data_auto_submit = !empty($this->get('trigger_default_submit')) ? ' data-auto-submit="1"' : 'data-auto-submit="0"';
-        $res = '<div class="folders_page mt-4 row mb-4"><div class="col-xl-6 col-sm-12"><form id="form_folder_imap" method="get"'.$data_auto_submit.'>';
+        $res = '<div class="folders_page mt-4 row m-0 px-3 mb-4"><div class="col-xl-6 col-sm-12"><form id="form_folder_imap" method="get"'.$data_auto_submit.'>';
         $res .= '<input type="hidden" name="page" value="'.$this->get('page', 'folders').'" />';
         $res .= '<div class="form-floating"><select class="form-select" id="imap_server_folder" name="imap_server_id">';
         $res .= '<option ';
