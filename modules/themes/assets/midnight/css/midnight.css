@@ -219,3 +219,802 @@ li.selected_menu a {
 .setting_description {
   color: var(--cy-text-muted);
 }
+
+/* --- Midnight polish: global micro-interactions and accessibility --- */
+html {
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background: var(--cy-accent-subtle);
+  color: var(--cy-text-primary);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--cy-border) var(--cy-bg-base);
+}
+
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--cy-bg-base);
+}
+
+*::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #485064, #3a4252);
+  border: 2px solid var(--cy-bg-base);
+  border-radius: 999px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #586178, #454f62);
+}
+
+:where(a, button, .btn, input, textarea, select, .folders li, .dropdown-item, .menu-toggle) {
+  transition: color 0.18s ease, background-color 0.18s ease, border-color 0.18s ease, box-shadow 0.2s ease, transform 0.16s ease;
+}
+
+:where(a, button, .btn, input, textarea, select):focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--cy-accent) 72%, white 28%);
+  outline-offset: 2px;
+}
+
+.content_cell,
+.message_list,
+.msg_text,
+.server_content,
+.profile_content,
+.user_settings,
+.search_content,
+.compose_page,
+.compose_container,
+.modal-content,
+.dropdown-menu,
+.list_settings_dialog,
+.draft_list {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
+}
+
+/* --- Login page polish --- */
+body:has(.login_form),
+body:has(.logout_form) {
+  min-height: 100vh;
+}
+
+.form-container {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 2rem 1rem;
+  background:
+    radial-gradient(1200px 500px at 12% -5%, rgba(90, 159, 212, 0.14), transparent 70%),
+    radial-gradient(900px 420px at 90% 110%, rgba(90, 159, 212, 0.08), transparent 72%),
+    linear-gradient(170deg, #141820 0%, #191e26 45%, #151921 100%);
+}
+
+.login_form {
+  width: min(460px, 95vw);
+  min-width: 0;
+  padding: 1.5rem 1.25rem 1.25rem;
+  border: 1px solid var(--cy-border);
+  border-radius: 16px;
+  background: linear-gradient(180deg, rgba(38, 43, 53, 0.96), rgba(31, 35, 43, 0.96));
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.38), inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  align-items: stretch;
+}
+
+.login_form > p,
+.login_form > .title,
+.login_form img {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.login_form img {
+  display: block;
+  max-height: 88px;
+  width: auto;
+  margin-bottom: 0.65rem;
+  filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.35));
+}
+
+.login_form .form-floating,
+.login_form .mb-3 {
+  width: 100%;
+}
+
+.login_form .form-control,
+.login_form input[type="text"],
+.login_form input[type="password"] {
+  background-color: var(--cy-bg-input) !important;
+  color: var(--cy-text-primary) !important;
+  border: 1px solid var(--cy-border) !important;
+  border-radius: 10px;
+}
+
+.login_form .form-control:focus,
+.login_form input[type="text"]:focus,
+.login_form input[type="password"]:focus {
+  border-color: var(--cy-accent) !important;
+  box-shadow: 0 0 0 3px var(--cy-accent-subtle) !important;
+}
+
+.login_form .form-floating > label,
+.login_form .label_signin {
+  color: var(--cy-text-secondary) !important;
+}
+
+.login_form .btn,
+.login_form button,
+.login_form input[type="submit"] {
+  width: 100%;
+  min-height: 44px;
+  border-radius: 10px;
+  background: linear-gradient(180deg, var(--cy-accent-hover), var(--cy-accent));
+  border: 1px solid color-mix(in srgb, var(--cy-accent) 70%, white 30%);
+  color: #fff;
+  font-weight: 600;
+  letter-spacing: 0.015em;
+  box-shadow: 0 10px 24px rgba(90, 159, 212, 0.25);
+}
+
+.login_form .btn:hover,
+.login_form button:hover,
+.login_form input[type="submit"]:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 26px rgba(90, 159, 212, 0.32);
+}
+
+/* --- Compose page polish --- */
+.compose_form {
+  gap: 0.35rem;
+}
+
+.compose_page .smtp_send,
+.compose_page .smtp_save,
+.compose_page .smtp_reset,
+.compose_page .compose_attach_button,
+.compose_page .smtp_send_archive {
+  border-radius: 9px;
+  border: 1px solid var(--cy-border);
+  padding: 0.46rem 0.8rem;
+  font-weight: 600;
+}
+
+.compose_page .smtp_send,
+.compose_page .smtp_send_archive {
+  border-color: var(--cy-accent);
+  box-shadow: 0 8px 20px rgba(90, 159, 212, 0.2);
+}
+
+.compose_page .smtp_save,
+.compose_page .smtp_reset,
+.compose_page .compose_attach_button {
+  background-color: var(--cy-bg-hover) !important;
+  color: var(--cy-text-primary) !important;
+}
+
+.compose_page .smtp_send:hover,
+.compose_page .smtp_send_archive:hover,
+.compose_page .smtp_save:hover,
+.compose_page .smtp_reset:hover,
+.compose_page .compose_attach_button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.24);
+}
+
+.compose_body,
+textarea.compose_body,
+.compose_page textarea.form-control {
+  border: 1px solid var(--cy-border) !important;
+  border-radius: 10px;
+  background-color: var(--cy-bg-input) !important;
+  color: var(--cy-text-primary) !important;
+}
+
+.compose_container.form-control {
+  border-radius: 10px;
+}
+
+.bubbles,
+.bubble_dropdown {
+  background-color: var(--cy-bg-input) !important;
+}
+
+.bubble {
+  background-color: color-mix(in srgb, var(--cy-bg-elevated) 88%, black 12%);
+  border-color: var(--cy-border-subtle);
+  color: var(--cy-text-primary);
+  border-radius: 999px;
+  padding: 0.35rem 0.72rem;
+}
+
+.bubble:hover {
+  background-color: var(--cy-bg-hover);
+}
+
+.bubble.bubble_selected {
+  background-color: var(--cy-accent-subtle);
+  border-color: var(--cy-accent);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+}
+
+.bubble_close {
+  color: var(--cy-text-secondary);
+  font-size: 1.35em;
+  margin-top: 3px;
+}
+
+.bubble_dropdown-content {
+  background-color: var(--cy-bg-elevated) !important;
+  border: 1px solid var(--cy-border) !important;
+  border-radius: 10px;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.35);
+}
+
+.bubble_dropdown-content ul li span,
+.bubble_dropdown-content ul li a {
+  color: var(--cy-text-primary) !important;
+  border-radius: 6px;
+}
+
+.bubble_dropdown-content ul li span:hover,
+.bubble_dropdown-content ul li a:hover {
+  background-color: var(--cy-bg-hover) !important;
+}
+
+.uploaded_files {
+  width: auto;
+  margin: 0.5rem 0 0;
+  border: 1px solid var(--cy-border-subtle);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--cy-bg-surface) 92%, black 8%);
+}
+
+.uploaded_files td {
+  padding: 0.45rem 0.65rem;
+  color: var(--cy-text-secondary);
+  border-top: 1px solid var(--cy-border-subtle);
+}
+
+.uploaded_files tr:first-child td {
+  border-top: 0;
+}
+
+.uploaded_files img {
+  opacity: 0.72;
+}
+
+.draft_list {
+  right: 8px;
+  top: 64px;
+  border: 1px solid var(--cy-border) !important;
+  border-radius: 12px;
+  background-color: var(--cy-bg-elevated) !important;
+  color: var(--cy-text-primary);
+}
+
+.draft_list a {
+  color: var(--cy-accent) !important;
+}
+
+/* --- Sidebar and navigation polish --- */
+nav.folder_cell .folder_list {
+  border-right: 1px solid var(--cy-border-subtle);
+  box-shadow: inset -1px 0 0 rgba(255, 255, 255, 0.02);
+}
+
+.folders li {
+  border-radius: 8px;
+}
+
+.folders li:hover {
+  background-color: color-mix(in srgb, var(--cy-bg-hover) 86%, white 14%);
+  transform: translateX(1px);
+}
+
+li.selected_menu {
+  border-left: 3px solid var(--cy-accent);
+  background: linear-gradient(90deg, rgba(90, 159, 212, 0.24) 0%, rgba(90, 159, 212, 0.06) 100%) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+li.selected_menu a {
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.src_name {
+  color: var(--cy-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.76rem;
+  font-weight: 700;
+  border-bottom: 1px solid var(--cy-border-subtle);
+  margin-top: 0.45rem;
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
+}
+
+.src_name:hover {
+  color: var(--cy-text-primary);
+}
+
+.folders .unread_count,
+.total_unread_count,
+.unread_count {
+  min-width: 1.35rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-align: center;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08), 0 4px 10px rgba(90, 159, 212, 0.28);
+}
+
+.sidebar-footer {
+  border-top: 1px solid var(--cy-border-subtle);
+  background: linear-gradient(180deg, rgba(31, 35, 43, 0.9), rgba(24, 28, 34, 0.95));
+}
+
+.sidebar-footer a,
+.menu-toggle {
+  color: var(--cy-text-secondary);
+}
+
+.sidebar-footer a:hover,
+.menu-toggle:hover {
+  color: var(--cy-text-primary);
+}
+
+/* ============================================================
+ * Module-level dark-mode overrides
+ * Override hardcoded light colors from module CSS files.
+ * midnight.css loads AFTER module CSS, so these take precedence.
+ * ============================================================ */
+
+/* --- modules/smtp/site.css (compose page) --- */
+
+.compose_page {
+  background-color: var(--cy-bg-elevated) !important;
+}
+
+.bubbles {
+  background-color: var(--cy-bg-input) !important;
+}
+
+.bubble {
+  border-color: var(--cy-border) !important;
+  color: var(--cy-text-primary) !important;
+}
+
+.bubble:hover {
+  background-color: var(--cy-bg-hover) !important;
+}
+
+.bubble.bubble_selected {
+  background-color: var(--cy-accent-subtle) !important;
+  border-color: var(--cy-accent) !important;
+}
+
+.bubble_dropdown {
+  background-color: var(--cy-bg-input) !important;
+}
+
+.bubble_dropdown-content {
+  background-color: var(--cy-bg-elevated) !important;
+  border-color: var(--cy-border) !important;
+}
+
+.bubble_dropdown-content ul li span,
+.bubble_dropdown-content ul li a {
+  color: var(--cy-text-primary) !important;
+}
+
+.bubble_dropdown-content ul li span:hover,
+.bubble_dropdown-content ul li a:hover {
+  background-color: var(--cy-bg-hover) !important;
+}
+
+.draft_list {
+  background-color: var(--cy-bg-elevated) !important;
+  border-color: var(--cy-border) !important;
+}
+
+.CodeMirror {
+  border-color: var(--cy-border) !important;
+  background-color: var(--cy-bg-input) !important;
+  color: var(--cy-text-primary) !important;
+}
+
+.editor-toolbar {
+  border-color: var(--cy-border) !important;
+  background-color: var(--cy-bg-surface) !important;
+}
+
+.editor-toolbar a,
+.editor-toolbar button,
+.editor-toolbar i.separator {
+  color: var(--cy-text-secondary) !important;
+  border-color: transparent !important;
+}
+
+.editor-toolbar a:hover,
+.editor-toolbar button:hover {
+  background-color: var(--cy-bg-hover) !important;
+}
+
+.meter {
+  background: var(--cy-border) !important;
+}
+
+/* --- modules/contacts/site.css --- */
+
+.contact_list td {
+  border-bottom-color: var(--cy-border-subtle) !important;
+}
+
+#cc_contacts,
+#bcc_contacts,
+#to_contacts {
+  background-color: var(--cy-bg-elevated) !important;
+  border-color: var(--cy-border) !important;
+  color: var(--cy-text-primary) !important;
+}
+
+.no_contact_sources {
+  color: var(--cy-text-muted) !important;
+}
+
+.contact-group > label {
+  background: var(--cy-bg-hover) !important;
+  color: var(--cy-text-primary) !important;
+}
+
+.contact-group > label:hover {
+  background: var(--cy-bg-elevated) !important;
+}
+
+.contact-group > input:checked + label {
+  background: var(--cy-bg-elevated) !important;
+}
+
+.contact-group > ul {
+  background: var(--cy-bg-surface) !important;
+  color: var(--cy-text-primary) !important;
+}
+
+.contact-group .typography {
+  color: var(--cy-text-secondary) !important;
+}
+
+.contact-group .typography h1,
+.contact-group .typography h2,
+.contact-group .typography h3,
+.contact-group .typography h4,
+.contact-group .typography h5,
+.contact-group .typography h6 {
+  color: var(--cy-text-primary) !important;
+}
+
+.contact-group .typography .pic {
+  border-color: var(--cy-border) !important;
+}
+
+.contact-group .typography ul li:before {
+  background: var(--cy-text-secondary) !important;
+}
+
+.contact-group-theme-1 > label {
+  background: var(--cy-bg-surface) !important;
+  color: var(--cy-text-muted) !important;
+  box-shadow: 0 2px rgba(0, 0, 0, 0.4) !important;
+}
+
+.contact-group-theme-1 > input:checked + label {
+  color: var(--cy-accent) !important;
+}
+
+.contact-group-steps > label:hover {
+  background: var(--cy-bg-hover) !important;
+}
+
+.contact-group .grid-col .inner {
+  background: var(--cy-bg-hover) !important;
+}
+
+.add_contact_responsive {
+  color: var(--cy-text-secondary) !important;
+}
+
+/* --- modules/calendar/site.css --- */
+
+.calendar_month td,
+.calendar_week td {
+  border-bottom-color: var(--cy-border-subtle) !important;
+  border-right-color: var(--cy-border-subtle) !important;
+}
+
+.calendar_week .offmonth,
+.calendar_month .offmonth {
+  color: var(--cy-text-muted) !important;
+}
+
+.event_details {
+  background-color: var(--cy-bg-elevated) !important;
+  border-color: var(--cy-border) !important;
+  color: var(--cy-text-primary) !important;
+}
+
+/* --- modules/imap/site.css --- */
+
+.msg_text {
+  background-color: var(--cy-bg-elevated) !important;
+}
+
+.imap_envelope {
+  color: var(--cy-text-secondary) !important;
+}
+
+.server_link {
+  background-color: var(--cy-bg-surface) !important;
+  border-color: var(--cy-border) !important;
+  color: var(--cy-text-primary) !important;
+}
+
+.hl {
+  color: var(--cy-text-secondary) !important;
+  background-color: var(--cy-bg-hover) !important;
+}
+
+.dl {
+  color: var(--cy-text-muted) !important;
+}
+
+.empty_list {
+  color: var(--cy-text-muted) !important;
+}
+
+.imap_server_setup {
+  background-color: var(--cy-bg-elevated) !important;
+  color: var(--cy-text-primary) !important;
+}
+
+.selected_part {
+  background-color: var(--cy-bg-hover) !important;
+}
+
+.overlay {
+  background-color: rgba(0, 0, 0, 0.6) !important;
+}
+
+.popup > .popup-container {
+  background-color: var(--cy-bg-elevated) !important;
+  border-color: var(--cy-border) !important;
+  color: var(--cy-text-primary) !important;
+}
+
+.ctr_divider {
+  color: var(--cy-border) !important;
+}
+
+.msg_parts {
+  border-top-color: var(--cy-border) !important;
+}
+
+.imap_debug {
+  border-color: var(--cy-border) !important;
+  background-color: var(--cy-bg-base) !important;
+  color: var(--cy-text-secondary) !important;
+}
+
+.move_to_title {
+  border-bottom-color: var(--cy-border) !important;
+}
+
+.move_to_location {
+  border-color: var(--cy-border) !important;
+  background-color: var(--cy-bg-elevated) !important;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.4) !important;
+}
+
+.attached_image_box {
+  border-top-color: var(--cy-border) !important;
+}
+
+/* --- modules/feeds/site.css --- */
+
+.msg_headers {
+  color: var(--cy-text-secondary) !important;
+}
+
+.msg_headers .header_subject h4 {
+  color: var(--cy-text-primary) !important;
+}
+
+.msg_headers .fw-semibold {
+  color: var(--cy-text-secondary) !important;
+}
+
+/* --- modules/core/site.css overrides --- */
+
+.not_found {
+  color: var(--cy-text-muted) !important;
+  border-left-color: var(--cy-border) !important;
+  background-color: var(--cy-bg-elevated) !important;
+}
+
+.checkbox_cell label {
+  background-color: var(--cy-bg-input) !important;
+  border-color: var(--cy-border) !important;
+}
+
+.checkbox_cell label:hover {
+  border-color: var(--cy-text-muted) !important;
+  background-color: var(--cy-bg-hover) !important;
+}
+
+.checkbox_cell input[type="checkbox"]:checked + label {
+  background-color: var(--cy-bg-input) !important;
+  border-color: var(--cy-accent) !important;
+}
+
+.checkbox_cell input[type="checkbox"]:checked + label::after {
+  color: var(--cy-accent) !important;
+}
+
+.dragged_element {
+  background-color: var(--cy-bg-elevated) !important;
+  border-color: var(--cy-border) !important;
+}
+
+.search_content {
+  background: var(--cy-bg-elevated) !important;
+}
+
+.page_links a {
+  color: var(--cy-text-primary) !important;
+}
+
+.page_links a:hover {
+  color: var(--cy-accent-hover) !important;
+}
+
+.logout {
+  color: var(--cy-text-primary) !important;
+  background: var(--cy-bg-surface) !important;
+}
+
+.logout:hover {
+  background-color: var(--cy-bg-hover) !important;
+  color: var(--cy-accent-hover) !important;
+}
+
+.s_pre {
+  color: var(--cy-text-muted) !important;
+}
+
+.news_cell .from {
+  color: var(--cy-text-primary) !important;
+}
+
+.list_sources,
+.update_search_label_field,
+.list_actions {
+  border-color: var(--cy-border) !important;
+}
+
+.update_search_label_field {
+  background-color: var(--cy-bg-elevated) !important;
+}
+
+.content_cell {
+  background-color: var(--cy-bg-elevated) !important;
+}
+
+.nofrom {
+  color: var(--cy-text-muted) !important;
+}
+
+.reply_quote {
+  color: var(--cy-text-muted) !important;
+}
+
+.date {
+  color: var(--cy-text-muted) !important;
+}
+
+/* Form elements — override generic textarea/select/input/button defaults */
+textarea,
+select,
+input,
+button {
+  border-color: var(--cy-border) !important;
+  background-color: var(--cy-bg-input) !important;
+  color: var(--cy-text-primary) !important;
+}
+
+/* Preserve primary button styling */
+.btn-primary,
+.smtp_send,
+.btn-primary:focus,
+.smtp_send:focus {
+  background-color: var(--cy-accent) !important;
+  border-color: var(--cy-accent) !important;
+  color: #fff !important;
+}
+
+.list_settings_dialog table th {
+  color: var(--cy-text-secondary) !important;
+}
+
+.noscript {
+  background-color: var(--cy-bg-base) !important;
+  color: var(--cy-text-primary) !important;
+}
+
+.message_table > tbody > tr > th:hover {
+  color: var(--cy-text-primary) !important;
+}
+
+.logout_form a {
+  color: var(--cy-text-secondary) !important;
+}
+
+.reset_factory_button {
+  color: var(--cy-text-muted) !important;
+}
+
+.list_src,
+.old_search_terms_label,
+.search_terms_label {
+  color: var(--cy-text-muted) !important;
+}
+
+.update_saved_search_title {
+  color: var(--cy-text-muted) !important;
+}
+
+.del_src_link {
+  color: var(--cy-text-muted) !important;
+}
+
+.search_form {
+  color: var(--cy-text-muted) !important;
+}
+
+.server_title {
+  color: var(--cy-text-secondary) !important;
+}
+
+.sys_messages .alert {
+  color: var(--cy-text-primary) !important;
+  background-color: var(--cy-bg-elevated) !important;
+  border-color: var(--cy-border) !important;
+}
+
+.tooltip_restore:hover:after,
+.tooltip_restore:focus:after {
+  background: var(--cy-bg-hover) !important;
+  color: var(--cy-text-primary) !important;
+}
+
+[restore_aria_label]:hover:before,
+[restore_aria_label]:focus:before {
+  color: var(--cy-bg-hover) !important;
+}
+
+.rtl_page .list_controls {
+  background-color: var(--cy-bg-elevated) !important;
+}
+
+.deleted a {
+  color: var(--cy-text-muted) !important;
+}

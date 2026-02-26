@@ -75,7 +75,7 @@ a:hover {
   padding: 0px;
   margin: 0px;
   display: table-cell;
-  background-color: #fff;
+  background-color: var(--bs-body-bg);
   padding-top: 0px;
   min-height: 100vh;
 }
@@ -213,7 +213,7 @@ td {
   position: absolute;
   top: 15px;
   right: 20px;
-  color: #888;
+  color: var(--bs-secondary-color);
   padding-right: 0px;
   padding-top: 6px;
 }
@@ -225,7 +225,7 @@ td {
   max-width: 200px;
 }
 .s_pre {
-  color: #666;
+  color: var(--bs-secondary-color);
 }
 .message_table > thead > tr > th {
   display: none;
@@ -250,7 +250,7 @@ td {
   padding-left: 20px;
 }
 .message_table > tbody > tr > th:hover {
-  color: #000;
+  color: var(--bs-emphasis-color);
 }
 .logout_form {
   white-space: nowrap;
@@ -259,7 +259,7 @@ td {
 }
 .logout_form a {
   font-weight: bold;
-  color: #666;
+  color: var(--bs-secondary-color);
 }
 .logged_in {
   padding-left: 10px;
@@ -277,18 +277,18 @@ td {
   padding: 5px;
   float: right;
   clear: none;
-  color: #333;
+  color: var(--bs-body-color);
   text-decoration: none;
   border: none !important;
   transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 }
 .logout:hover {
-  background-color: #eee;
+  background-color: var(--bs-tertiary-bg);
   color: var(--bs-link-hover-color);
 }
 .logout {
   cursor: pointer;
-  background: #fff;
+  background: var(--bs-body-bg);
   font-size: 100%;
 }
 .server_content,
@@ -299,7 +299,7 @@ td {
   table-layout: fixed;
   width: 100%;
   min-height: 500px;
-  background: #fff;
+  background: var(--bs-body-bg);
   height: 100%;
   margin-right: 20px;
   padding-bottom: 20px;
@@ -322,7 +322,7 @@ td {
   right: 10px;
   margin-right: 37px;
   cursor: pointer;
-  color: #666;
+  color: var(--bs-secondary-color);
   font-size: 100%;
 }
 .disabled_link {
@@ -340,9 +340,9 @@ textarea,
 select,
 input,
 button {
-  border: solid 1px #ddd;
-  background-color: #fff;
-  color: #333;
+  border: solid 1px var(--bs-border-color);
+  background-color: var(--bs-body-bg);
+  color: var(--bs-body-color);
   border-radius: 3px;
 }
 
@@ -393,7 +393,7 @@ button {
   color: var(--bs-link-color) !important;
 }
 .folder_list {
-  background-color: #fff;
+  background-color: var(--bs-body-bg);
   padding-right: 15px;
   padding-bottom: 40px;
   width: calc(var(--nav-size) - 60px);
@@ -467,11 +467,11 @@ button {
 }
 .not_found {
   font-size: 150%;
-  color: #999;
+  color: var(--bs-tertiary-color);
   padding: 50px;
   height: 100%;
-  border-left: solid 1px #ddd;
-  background-color: #fff;
+  border-left: solid 1px var(--bs-border-color);
+  background-color: var(--bs-body-bg);
 }
 .no_servers {
   text-align: center;
@@ -553,28 +553,28 @@ button {
   justify-content: center;
   width: 18px;
   height: 18px;
-  background-color: #fff;
-  border: solid 2px #ccc;
+  background-color: var(--bs-body-bg);
+  border: solid 2px var(--bs-border-color);
   border-radius: 3px;
   cursor: pointer;
   transition: all 0.2s ease;
   position: relative;
 }
 .checkbox_cell label:hover {
-  border-color: #999;
-  background-color: #f8f9fa;
+  border-color: var(--bs-secondary-color);
+  background-color: var(--bs-tertiary-bg);
 }
 .checkbox_cell input[type="checkbox"] {
   display: none;
 }
 .checkbox_cell input[type="checkbox"]:checked + label {
-  background-color: #fff;
-  border-color: #008080;
+  background-color: var(--bs-body-bg);
+  border-color: var(--bs-primary);
 }
 .checkbox_cell input[type="checkbox"]:checked + label::after {
   content: "\F633";
   font-family: "bootstrap-icons" !important;
-  color: #008080;
+  color: var(--bs-primary);
   font-size: 14px;
   font-weight: bold;
   display: flex;
@@ -583,12 +583,12 @@ button {
 }
 .confirm_logout {
   display: none;
-  background-color: #eee;
+  background-color: var(--bs-tertiary-bg);
   padding: 20px;
   position: absolute;
   left: 0px;
   top: 0px;
-  border: solid 1px #ede8e6;
+  border: solid 1px var(--bs-border-color);
   z-index: 100;
 }
 .folder_list .update_unread {
@@ -597,7 +597,7 @@ button {
 }
 .page_links a {
   text-decoration: none;
-  color: #111;
+  color: var(--bs-body-color);
   transition: color 0.2s ease-in-out;
 }
 .page_links a:hover {
@@ -645,11 +645,11 @@ button {
   max-width: 100%;
   float: left;
   font-size: 100% !important;
-  color: #111;
+  color: var(--bs-body-color);
   letter-spacing: 0px;
 }
 .nofrom {
-  color: #aaa !important;
+  color: var(--bs-tertiary-color) !important;
 }
 .news_cell .source {
   float: left;
@@ -669,8 +669,8 @@ button {
   top: 0px;
   right: 0px;
   width: 600px;
-  background-color: #efefef;
-  border: solid 1px #ede8e6;
+  background-color: var(--bs-tertiary-bg);
+  border: solid 1px var(--bs-border-color);
 }
 .list_settings_dialog table {
   width: 1%;
@@ -711,7 +711,7 @@ button {
   left: 0px;
   top: 0px;
   bottom: 0px;
-  background-color: #ede8e6;
+  background-color: var(--bs-secondary-bg);
   opacity: 1;
   padding-top: 100px;
   text-align: center;
@@ -749,12 +749,12 @@ button {
 }
 .update_search_label_field {
   z-index: 100;
-  border-left: solid 1px #ede8e6;
-  border-bottom: solid 1px #ede8e6;
+  border-left: solid 1px var(--bs-border-color);
+  border-bottom: solid 1px var(--bs-border-color);
   position: absolute;
   right: 0px;
   top: 54px;
-  background-color: #fafafa;
+  background-color: var(--bs-body-bg);
   font-size: 85%;
   padding: 30px;
   padding-top: 10px;
@@ -763,7 +763,7 @@ button {
 .list_src,
 .old_search_terms_label,
 .search_terms_label {
-  color: #666;
+  color: var(--bs-secondary-color);
   margin-bottom: 10px;
 }
 .old_search_terms_label,
@@ -772,19 +772,19 @@ button {
   width: 100%;
 }
 .update_saved_search_title {
-  color: #666;
+  color: var(--bs-secondary-color);
   font-size: 110%;
   padding: 5px;
   margin-bottom: 10px;
 }
 .del_src_link {
   padding: 3px;
-  color: #666;
+  color: var(--bs-secondary-color);
   margin-right: 5px;
 }
 .search_form {
   font-size: 80%;
-  color: #999;
+  color: var(--bs-tertiary-color);
   display: inline;
   padding-left: 15px;
   width: 100%;
@@ -802,7 +802,7 @@ button {
   table-layout: fixed;
   width: 100%;
   min-height: 600px;
-  background: #fff;
+  background: var(--bs-body-bg);
   height: 100%;
   margin-right: 20px;
   padding-bottom: 40px;
@@ -819,10 +819,10 @@ button {
   opacity: 0.4;
 }
 .reply_quote {
-  color: #999;
+  color: var(--bs-tertiary-color);
 }
 .hl {
-  background-color: #eee;
+  background-color: var(--bs-tertiary-bg);
 }
 .settings_wrap_text {
   white-space: normal;
@@ -853,7 +853,7 @@ div.unseen,
 }
 .total_unread_count,
 .unread_count {
-  background-color: #ccc;
+  background-color: var(--bs-secondary-bg);
   font-size: 90%;
   margin-left: 10px;
   padding: 2px 6px;
@@ -942,7 +942,7 @@ div.unseen,
   top: 0px;
   padding-top: 10px;
   right: auto;
-  background-color: #fff;
+  background-color: var(--bs-body-bg);
 }
 .rtl_page .toggle_link {
   margin-right: 5px !important;
@@ -990,7 +990,7 @@ div.unseen,
   z-index: 1100 !important;
 }
 .sys_messages .alert {
-  color: #333;
+  color: var(--bs-body-color);
   box-shadow: rgba(0, 0, 0, 0.25) 0px 3px 8px !important;
 }
 
@@ -1187,7 +1187,7 @@ div.unseen,
   display: none;
 }
 .mobile .list_controls {
-  color: #777;
+  color: var(--bs-secondary-color);
   padding-left: 5px;
   padding-right: 5px;
 }
@@ -1247,8 +1247,8 @@ div.unseen,
   z-index: 1;
   white-space: nowrap;
   padding: 5px 14px;
-  background: #777;
-  color: #fff;
+  background: var(--bs-secondary-bg);
+  color: var(--bs-body-color);
   border-radius: 4px;
   font-size: 1rem;
 }
@@ -1259,7 +1259,7 @@ div.unseen,
   top: -1em;
   left: 50%;
   transform: translateX(-50%);
-  color: #777;
+  color: var(--bs-secondary-bg);
 }
 [restore_aria_label]:focus {
   outline: none;
@@ -1340,8 +1340,8 @@ div.unseen,
 }
 
 .dragged_element {
-  background-color: #fff !important;
-  border: solid 1px #ddd;
+  background-color: var(--bs-body-bg) !important;
+  border: solid 1px var(--bs-border-color);
   padding: 10px;
 }
 .cursor-pointer {
@@ -1351,8 +1351,8 @@ div.unseen,
 .update_search_label_field,
 .list_actions {
   z-index: 100;
-  border-left: solid 1px #ede8e6;
-  border-bottom: solid 1px #ede8e6;
+  border-left: solid 1px var(--bs-border-color);
+  border-bottom: solid 1px var(--bs-border-color);
   position: absolute;
   right: 0px;
   top: 54px;
@@ -1401,7 +1401,7 @@ div.unseen,
 .server_title {
   font-size: 110%;
   margin-bottom: 0px;
-  color: #666;
+  color: var(--bs-secondary-color);
 }
 .server_subtitle {
   font-size: x-small;
