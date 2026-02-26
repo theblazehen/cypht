@@ -38,7 +38,7 @@ RUN set -eux \
         soap \
         zip \
     && curl -sSL https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions -o - | sh -s \
-        xdebug redis gnupg memcached ldap \
+        redis gnupg memcached ldap \
     && rm -rf /var/lib/apt/lists/* \
     && mkdir -p /var/log/php /var/log/supervisord \
     && ln -sf /dev/stdout /var/log/nginx/access.log \
@@ -48,11 +48,6 @@ RUN set -eux \
     && ln -s /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini
 
 # PHP Config
-RUN printf "[xdebug] \n\
-zend_extension=xdebug.so \n\
-xdebug.mode=debug \n\
-xdebug.client_host=host.docker.internal" > /usr/local/etc/php/conf.d/xdebug.ini
-
 RUN printf "post_max_size = 60M \n\
 upload_max_filesize = 50M \n\
 open_basedir = /var/lib/hm3/:/usr/local/share/cypht/:/tmp:/usr/local/bin:/tmp/composer_cache:/tmp/composer_home:/etc" > /usr/local/etc/php/conf.d/cypht.ini

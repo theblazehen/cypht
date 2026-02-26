@@ -143,7 +143,8 @@ if (!hm_exists('hm_themes')) {
             'united' => 'United',
             'vapor' => 'Vapor',
             'yeti' => 'Yeti',
-            'zephyr' => 'Zephyr'
+            'zephyr' => 'Zephyr',
+            'midnight' => 'Midnight'
         );
     }
 }
