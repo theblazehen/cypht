@@ -1,0 +1,542 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cypht Redesign - Inbox</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <style>
+    :root {
+      --bg-base: #0d1117;
+      --bg-surface: #131720;
+      --bg-elevated: #161b22;
+      --bg-hover: #1c2533;
+      --border: #2a3343;
+      --text-primary: #e6edf3;
+      --text-secondary: #8b949e;
+      --accent: #58a6ff;
+      --accent-green: #3fb950;
+      --accent-teal: #008080;
+      --space-1: 4px;
+      --space-2: 8px;
+      --space-3: 16px;
+      --space-4: 24px;
+      --space-5: 32px;
+      --radius-sm: 8px;
+      --radius-md: 12px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: radial-gradient(circle at top right, #131a26 0%, var(--bg-base) 36%);
+      color: var(--text-primary);
+      font-family: "Inter", sans-serif;
+      line-height: 1.45;
+    }
+
+    .app-shell {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      background: linear-gradient(180deg, #131923 0%, var(--bg-surface) 100%);
+      border-right: 1px solid var(--border);
+      padding: var(--space-4) var(--space-3);
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: #3b465d transparent;
+    }
+
+    .logo {
+      font-weight: 700;
+      letter-spacing: 0.2px;
+      font-size: 24px;
+      margin-bottom: var(--space-4);
+    }
+
+    .menu-group {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-1);
+      margin-bottom: var(--space-4);
+    }
+
+    .menu-item, .folder-link {
+      border: 1px solid transparent;
+      border-radius: 10px;
+      color: var(--text-secondary);
+      padding: 9px 10px;
+      font-size: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-2);
+      text-decoration: none;
+      cursor: pointer;
+      transition: 120ms ease;
+    }
+
+    .menu-item:hover, .folder-link:hover {
+      background: var(--bg-hover);
+      border-color: #314059;
+      color: var(--text-primary);
+    }
+
+    .menu-item.active {
+      background: rgba(88, 166, 255, 0.12);
+      border-color: rgba(88, 166, 255, 0.45);
+      color: #d7ebff;
+    }
+
+    .menu-left {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .badge { background: #58a6ff; color: #fff; padding: 1px 8px; border-radius: 99px; font-size: 12px; font-weight: 600; min-width: 24px; text-align: center; }
+    .badge.muted { background: #1c2533; color: #8b949e; }
+
+    .section-label {
+      color: var(--text-secondary);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: var(--space-2);
+    }
+
+    .account-block {
+      margin-bottom: var(--space-2);
+      border: 1px solid #243044;
+      border-radius: var(--radius-sm);
+      background: rgba(18, 26, 38, 0.72);
+      padding: 10px;
+    }
+
+    .account-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      color: var(--text-primary);
+    }
+
+    .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+    .dot.green { background: #3fb950; }
+    .dot.gray { background: #8b949e; }
+
+    .account-folders {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-1);
+      margin-top: var(--space-2);
+    }
+
+    .folder-link {
+      padding: 6px 8px;
+      font-size: 13px;
+    }
+
+    .sidebar-footer {
+      margin-top: auto;
+      display: grid;
+      gap: var(--space-2);
+      padding-top: var(--space-4);
+    }
+
+    .footer-btn, .btn {
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: #111722;
+      color: var(--text-primary);
+      padding: 9px 12px;
+      font: inherit;
+      font-size: 14px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      cursor: pointer;
+      transition: 120ms ease;
+    }
+
+    .footer-btn:hover, .btn:hover {
+      background: #182030;
+      border-color: #3a4960;
+    }
+
+    .footer-btn.active {
+      background: rgba(88, 166, 255, 0.13);
+      border-color: rgba(88, 166, 255, 0.5);
+    }
+
+    .btn.primary {
+      background: var(--accent);
+      color: #0a1929;
+      border-color: #6fb4ff;
+      box-shadow: 0 10px 20px rgba(88,166,255,0.25);
+      font-weight: 600;
+    }
+
+    .btn.ghost-danger {
+      color: #ffb3b3;
+      border-color: #5b2a2a;
+      background: rgba(72, 21, 21, 0.3);
+    }
+
+    input, select, textarea {
+      background: #111722;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 12px;
+      color: var(--text-primary);
+      font: inherit;
+      width: 100%;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: rgba(88,166,255,0.7);
+      box-shadow: 0 0 0 3px rgba(88,166,255,0.18);
+    }
+
+    .main {
+      padding: var(--space-4);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+
+    .panel {
+      background: linear-gradient(180deg, #171d26 0%, var(--bg-elevated) 100%);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.28);
+    }
+
+    .toolbar {
+      padding: var(--space-3);
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: var(--space-3);
+      align-items: center;
+    }
+
+    .toolbar-left, .toolbar-actions, .toolbar-right {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      flex-wrap: wrap;
+    }
+
+    .inbox-title {
+      font-weight: 700;
+      font-size: 20px;
+      margin-left: var(--space-2);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .inbox-title .count {
+      color: var(--text-secondary);
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .toolbar-right {
+      justify-content: flex-end;
+      color: var(--text-secondary);
+      font-size: 14px;
+    }
+
+    .toolbar .btn {
+      padding: 8px 10px;
+      font-size: 13px;
+    }
+
+    .message-list {
+      overflow: hidden;
+    }
+
+    .msg-row {
+      display: grid;
+      grid-template-columns: 4px 20px 36px 160px 1fr auto 84px 20px 18px;
+      align-items: center;
+      gap: var(--space-2);
+      padding: 11px var(--space-3);
+      border-bottom: 1px solid #273247;
+      font-size: 14px;
+    }
+
+    .msg-row:last-child { border-bottom: 0; }
+    .msg-indicator { width: 4px; align-self: stretch; border-radius: 2px; flex-shrink: 0; }
+    .msg-row.unread .msg-indicator { background: #58a6ff; }
+    .msg-row.unread .msg-from, .msg-row.unread .msg-subject { font-weight: 600; color: #e6edf3; }
+    .msg-row.unread { background: rgba(88,166,255,0.03); }
+
+    .avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .msg-from {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .msg-content {
+      min-width: 0;
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      color: var(--text-secondary);
+    }
+
+    .msg-subject {
+      color: #c8d2dc;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 520px;
+    }
+
+    .msg-preview {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .msg-tags {
+      display: inline-flex;
+      gap: 6px;
+      margin-left: 6px;
+    }
+
+    .msg-tag { font-size: 11px; padding: 1px 8px; border-radius: 99px; font-weight: 500; }
+    .msg-tag.blue { background: rgba(88,166,255,0.15); color: #58a6ff; }
+    .msg-tag.green { background: rgba(63,185,80,0.15); color: #3fb950; }
+    .msg-tag.purple { background: rgba(163,113,247,0.15); color: #a371f7; }
+    .msg-tag.orange { background: rgba(210,153,34,0.15); color: #d29922; }
+
+    .msg-date {
+      color: var(--text-secondary);
+      font-size: 13px;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .msg-star { font-size: 16px; color: #2a3343; cursor: pointer; }
+    .msg-star:hover, .msg-star.starred { color: #d29922; }
+
+    .attach {
+      color: #6a768a;
+      font-size: 14px;
+      text-align: center;
+    }
+
+    .status-bar {
+      margin-top: auto;
+      color: #9fcba8;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      padding: 10px 12px;
+    }
+
+    @media (max-width: 1300px) {
+      .msg-row {
+        grid-template-columns: 4px 20px 36px 130px 1fr auto 70px 20px 18px;
+      }
+      .msg-subject { max-width: 380px; }
+    }
+
+    @media (max-width: 980px) {
+      .app-shell { grid-template-columns: 1fr; }
+      .sidebar { position: static; height: auto; }
+      .toolbar { grid-template-columns: 1fr; }
+      .toolbar-right { justify-content: flex-start; }
+      .msg-row {
+        grid-template-columns: 4px 20px 36px 1fr auto;
+        grid-template-areas:
+          "ind cb av from date"
+          "ind cb av content content"
+          "ind cb av icons icons";
+        row-gap: 6px;
+      }
+      .msg-indicator { grid-area: ind; }
+      .msg-row input[type='checkbox'] { grid-area: cb; }
+      .avatar { grid-area: av; }
+      .msg-from { grid-area: from; }
+      .msg-content { grid-area: content; }
+      .msg-date { grid-area: date; text-align: right; }
+      .msg-star, .attach { grid-area: icons; }
+    }
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="logo">Cypht</div>
+      <nav class="menu-group">
+        <a class="menu-item active"><span class="menu-left"><i class="bi bi-inbox"></i>Inbox</span><span class="badge">12</span></a>
+        <a class="menu-item"><span class="menu-left"><i class="bi bi-list-task"></i>Everything</span></a>
+        <a class="menu-item"><span class="menu-left"><i class="bi bi-envelope"></i>Unread</span><span class="badge">5</span></a>
+        <a class="menu-item"><span class="menu-left"><i class="bi bi-star"></i>Flagged</span></a>
+        <a class="menu-item"><span class="menu-left"><i class="bi bi-trash3"></i>Trash</span></a>
+        <a class="menu-item"><span class="menu-left"><i class="bi bi-pencil-square"></i>Drafts</span><span class="badge muted">2</span></a>
+      </nav>
+      <div class="section-label">Email Accounts</div>
+      <div class="account-block">
+        <div class="account-title"><i class="bi bi-caret-down-fill"></i><span class="dot green"></span>user@example.com</div>
+        <div class="account-folders">
+          <a class="folder-link">Inbox</a><a class="folder-link">Sent</a><a class="folder-link">Drafts</a><a class="folder-link">Archive</a>
+        </div>
+      </div>
+      <div class="account-block">
+        <div class="account-title"><i class="bi bi-caret-right-fill"></i><span class="dot gray"></span>work@company.com</div>
+      </div>
+      <div class="sidebar-footer">
+        <button class="footer-btn"><i class="bi bi-gear"></i>Settings</button>
+        <button class="footer-btn"><i class="bi bi-box-arrow-right"></i>Logout</button>
+      </div>
+    </aside>
+
+    <main class="main">
+      <section class="panel toolbar">
+        <div class="toolbar-left">
+          <input type="checkbox" aria-label="Select all" style="width:auto;">
+          <button class="btn"><i class="bi bi-archive"></i>Archive</button>
+          <button class="btn"><i class="bi bi-trash3"></i>Delete</button>
+          <button class="btn"><i class="bi bi-folder2-open"></i>Move</button>
+          <button class="btn"><i class="bi bi-envelope-open"></i>Mark Read</button>
+        </div>
+        <div class="inbox-title">Inbox <span class="count">12 unread</span></div>
+        <div class="toolbar-right">
+          <input type="search" placeholder="Search mail" style="max-width:240px;">
+          <select style="max-width:150px;">
+            <option>Newest first</option>
+            <option>Oldest first</option>
+            <option>Sender A-Z</option>
+          </select>
+          <span>1-20 of 847</span>
+        </div>
+      </section>
+
+      <section class="panel message-list">
+        <div class="msg-row unread">
+          <span class="msg-indicator"></span><input type="checkbox" aria-label="Select message" style="width:auto;"><span class="avatar" style="background:#2d6be4">GH</span>
+          <div class="msg-from">GitHub</div>
+          <div class="msg-content"><span class="msg-subject">[cypht/cypht] CI check failed on PR #482</span><span class="msg-preview">Unit tests are failing in php8.3 matrix...</span><span class="msg-tags"><span class="msg-tag.blue">DevOps</span><span class="msg-tag.purple">Code</span></span></div>
+          <div class="msg-date">10:42 AM</div><i class="bi bi-star msg-star"></i><i class="bi bi-paperclip attach"></i>
+        </div>
+        <div class="msg-row unread">
+          <span class="msg-indicator"></span><input type="checkbox" aria-label="Select message" style="width:auto;"><span class="avatar" style="background:#8250df">JS</span>
+          <div class="msg-from">John Smith</div>
+          <div class="msg-content"><span class="msg-subject">Q1 Planning Review - Updated Timeline</span><span class="msg-preview">Can you review the revised milestones before noon?</span><span class="msg-tags"><span class="msg-tag.green">Work</span></span></div>
+          <div class="msg-date">9:58 AM</div><i class="bi bi-star-fill msg-star starred"></i><i class="bi bi-paperclip attach"></i>
+        </div>
+        <div class="msg-row">
+          <span class="msg-indicator"></span><input type="checkbox" aria-label="Select message" style="width:auto;"><span class="avatar" style="background:#1a7f37">SR</span>
+          <div class="msg-from">Sarah Rodriguez</div>
+          <div class="msg-content"><span class="msg-subject">Client deck feedback</span><span class="msg-preview">Slides 7 and 11 need clearer KPIs and stronger CTA.</span><span class="msg-tags"><span class="msg-tag.blue">Project</span></span></div>
+          <div class="msg-date">9:32 AM</div><i class="bi bi-star msg-star"></i><i class="bi bi-paperclip attach"></i>
+        </div>
+        <div class="msg-row unread">
+          <span class="msg-indicator"></span><input type="checkbox" aria-label="Select message" style="width:auto;"><span class="avatar" style="background:#bf4b28">AW</span>
+          <div class="msg-from">AWS Notifications</div>
+          <div class="msg-content"><span class="msg-subject">Billing alarm: Monthly spend exceeded $2,000</span><span class="msg-preview">View cost explorer to investigate EC2 utilization spikes.</span><span class="msg-tags"><span class="msg-tag.orange">Billing</span></span></div>
+          <div class="msg-date">8:44 AM</div><i class="bi bi-star msg-star"></i><i class="bi bi-paperclip attach"></i>
+        </div>
+        <div class="msg-row">
+          <span class="msg-indicator"></span><input type="checkbox" aria-label="Select message" style="width:auto;"><span class="avatar" style="background:#d29922">LI</span>
+          <div class="msg-from">LinkedIn</div>
+          <div class="msg-content"><span class="msg-subject">8 people viewed your profile this week</span><span class="msg-preview">Stay visible by sharing your latest product launch.</span></div>
+          <div class="msg-date">8:21 AM</div><i class="bi bi-star msg-star"></i><i class="bi bi-paperclip attach" style="opacity:0"></i>
+        </div>
+        <div class="msg-row unread">
+          <span class="msg-indicator"></span><input type="checkbox" aria-label="Select message" style="width:auto;"><span class="avatar" style="background:#6e40aa">ST</span>
+          <div class="msg-from">Stripe</div>
+          <div class="msg-content"><span class="msg-subject">Payout sent to your bank account</span><span class="msg-preview">Your transfer for February has been initiated successfully.</span><span class="msg-tags"><span class="msg-tag.green">Finance</span></span></div>
+          <div class="msg-date">7:59 AM</div><i class="bi bi-star-fill msg-star starred"></i><i class="bi bi-paperclip attach" style="opacity:0"></i>
+        </div>
+        <div class="msg-row">
+          <span class="msg-indicator"></span><input type="checkbox" aria-label="Select message" style="width:auto;"><span class="avatar" style="background:#238636">PW</span>
+          <div class="msg-from">PHP Weekly</div>
+          <div class="msg-content"><span class="msg-subject">Issue #413: New in Laravel, Symfony and PHP 8.4 RFCs</span><span class="msg-preview">A compact digest of the best engineering reads this week.</span><span class="msg-tags"><span class="msg-tag.purple">Newsletter</span></span></div>
+          <div class="msg-date">7:30 AM</div><i class="bi bi-star msg-star"></i><i class="bi bi-paperclip attach" style="opacity:0"></i>
+        </div>
+        <div class="msg-row">
+          <span class="msg-indicator"></span><input type="checkbox" aria-label="Select message" style="width:auto;"><span class="avatar" style="background:#1f6feb">MS</span>
+          <div class="msg-from">Microsoft 365</div>
+          <div class="msg-content"><span class="msg-subject">Security digest: 3 new recommendations</span><span class="msg-preview">Enable conditional access policy for privileged roles.</span><span class="msg-tags"><span class="msg-tag.orange">Security</span></span></div>
+          <div class="msg-date">Yesterday</div><i class="bi bi-star msg-star"></i><i class="bi bi-paperclip attach" style="opacity:0"></i>
+        </div>
+        <div class="msg-row unread">
+          <span class="msg-indicator"></span><input type="checkbox" aria-label="Select message" style="width:auto;"><span class="avatar" style="background:#da3633">DB</span>
+          <div class="msg-from">Datadog</div>
+          <div class="msg-content"><span class="msg-subject">Monitor alert: API p95 latency above threshold</span><span class="msg-preview">Service cypht-mail-api exceeded 900ms for 15 minutes.</span><span class="msg-tags"><span class="msg-tag.blue">Ops</span></span></div>
+          <div class="msg-date">Yesterday</div><i class="bi bi-star msg-star"></i><i class="bi bi-paperclip attach"></i>
+        </div>
+        <div class="msg-row">
+          <span class="msg-indicator"></span><input type="checkbox" aria-label="Select message" style="width:auto;"><span class="avatar" style="background:#6e7681">AS</span>
+          <div class="msg-from">Asana</div>
+          <div class="msg-content"><span class="msg-subject">Task due today: Finalize onboarding copy</span><span class="msg-preview">Reminder from Product Marketing workspace.</span><span class="msg-tags"><span class="msg-tag.green">Task</span></span></div>
+          <div class="msg-date">Yesterday</div><i class="bi bi-star msg-star"></i><i class="bi bi-paperclip attach" style="opacity:0"></i>
+        </div>
+        <div class="msg-row">
+          <span class="msg-indicator"></span><input type="checkbox" aria-label="Select message" style="width:auto;"><span class="avatar" style="background:#388bfd">CF</span>
+          <div class="msg-from">Cloudflare</div>
+          <div class="msg-content"><span class="msg-subject">Weekly analytics report is ready</span><span class="msg-preview">Traffic up 12.4%, bot mitigation events down 8.1%.</span></div>
+          <div class="msg-date">Feb 24</div><i class="bi bi-star msg-star"></i><i class="bi bi-paperclip attach" style="opacity:0"></i>
+        </div>
+        <div class="msg-row">
+          <span class="msg-indicator"></span><input type="checkbox" aria-label="Select message" style="width:auto;"><span class="avatar" style="background:#f78166">HR</span>
+          <div class="msg-from">HR Team</div>
+          <div class="msg-content"><span class="msg-subject">Benefits enrollment closes Friday</span><span class="msg-preview">Please verify your health plan selections this week.</span></div>
+          <div class="msg-date">Feb 24</div><i class="bi bi-star msg-star"></i><i class="bi bi-paperclip attach"></i>
+        </div>
+        <div class="msg-row">
+          <span class="msg-indicator"></span><input type="checkbox" aria-label="Select message" style="width:auto;"><span class="avatar" style="background:#3fb950">NP</span>
+          <div class="msg-from">Notion</div>
+          <div class="msg-content"><span class="msg-subject">Comment on "Cypht redesign direction"</span><span class="msg-preview">"Love the sidebar concept. Can we test denser message rows?"</span><span class="msg-tags"><span class="msg-tag.purple">Design</span></span></div>
+          <div class="msg-date">Feb 23</div><i class="bi bi-star msg-star"></i><i class="bi bi-paperclip attach" style="opacity:0"></i>
+        </div>
+        <div class="msg-row">
+          <span class="msg-indicator"></span><input type="checkbox" aria-label="Select message" style="width:auto;"><span class="avatar" style="background:#238636">ZT</span>
+          <div class="msg-from">Zoom</div>
+          <div class="msg-content"><span class="msg-subject">Recording available: Product Sync</span><span class="msg-preview">Your cloud recording and transcript are now ready.</span></div>
+          <div class="msg-date">Feb 22</div><i class="bi bi-star msg-star"></i><i class="bi bi-paperclip attach"></i>
+        </div>
+        <div class="msg-row">
+          <span class="msg-indicator"></span><input type="checkbox" aria-label="Select message" style="width:auto;"><span class="avatar" style="background:#1f6feb">PP</span>
+          <div class="msg-from">PayPal</div>
+          <div class="msg-content"><span class="msg-subject">Monthly statement is now available</span><span class="msg-preview">Download your February transaction statement.</span><span class="msg-tags"><span class="msg-tag.orange">Finance</span></span></div>
+          <div class="msg-date">Feb 21</div><i class="bi bi-star msg-star"></i><i class="bi bi-paperclip attach" style="opacity:0"></i>
+        </div>
+      </section>
+
+      <div class="panel status-bar"><span class="dot green"></span>Connected — last synced 30 seconds ago</div>
+    </main>
+  </div>
+</body>
+</html>

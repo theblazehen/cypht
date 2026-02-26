@@ -381,6 +381,11 @@ function process_bootswatch_files() {
     if (! is_dir($src)) {
         return;
     }
+
+    $bootswatch_aliases = [
+        'midnight' => 'darkly',
+    ];
+
     $dir = opendir($src);
     while(false !== ($folder = readdir($dir))) {
         if (($folder != '.' ) && ($folder != '..' )) {
@@ -389,9 +394,14 @@ function process_bootswatch_files() {
                 if ($folder == 'default') {
                     $content = file_get_contents(VENDOR_PATH . 'twbs/bootstrap/dist/css/bootstrap.min.css');
                 } else {
-                    $content = file_get_contents(VENDOR_PATH . 'thomaspark/bootswatch/dist/' . $folder . '/bootstrap.min.css');
+                    $bootswatch_folder = isset($bootswatch_aliases[$folder]) ? $bootswatch_aliases[$folder] : $folder;
+                    $bootswatch_path = VENDOR_PATH . 'thomaspark/bootswatch/dist/' . $bootswatch_folder . '/bootstrap.min.css';
+                    $content = file_get_contents($bootswatch_path);
+                    if ($content === false) {
+                        printf("WARNING: Could not read bootswatch CSS for theme '%s' at %s\n", $folder, $bootswatch_path);
+                        continue;
+                    }
                 }
-                // Append customization done to the default theme
                 $custom = file_get_contents($target);
                 $custom = preg_replace('/^@import.+/m', '', $custom);
                 $custom = preg_replace('/^@charset.+/m', '', $custom);

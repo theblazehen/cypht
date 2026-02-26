@@ -1,19 +1,208 @@
 @charset "UTF-8";
-/*Bootswatch theme adapted by the Cypht Community for Cypht */
-/* Original Bootswatch information:
- * Bootswatch v5.3.1 (https://bootswatch.com)
- * Theme: darkly
- * Copyright 2012-2023 Thomas Park
- * Licensed under MIT
- * Based on Bootstrap
+/*
+ * Cypht "Midnight" Theme (safe pass)
+ * Keep Bootstrap/Darkly behavior intact and only override
+ * high-impact Cypht surfaces to avoid editor regressions.
  */
-/*!
- * Bootstrap  v5.3.1 (https://getbootstrap.com/)
- * Copyright 2011-2023 The Bootstrap Authors
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
- */
+
 @import url("../../../../../vendor/thomaspark/bootswatch/dist/darkly/bootstrap.min.css");
 
 :root {
-  --bs-input-placeholder-color: var(--bs-secondary-color);
+  --cy-bg-base: #181c22;
+  --cy-bg-surface: #1f232b;
+  --cy-bg-elevated: #262b35;
+  --cy-bg-hover: #2d3340;
+  --cy-bg-input: #1b2028;
+  --cy-border: #394150;
+  --cy-border-subtle: #2d3440;
+  --cy-text-primary: #d8dee7;
+  --cy-text-secondary: #9ba5b5;
+  --cy-text-muted: #7f8897;
+  --cy-accent: #5a9fd4;
+  --cy-accent-hover: #7ab4df;
+  --cy-accent-subtle: rgba(90, 159, 212, 0.18);
+
+  --bs-body-bg: var(--cy-bg-surface);
+  --bs-body-color: var(--cy-text-primary);
+  --bs-border-color: var(--cy-border);
+  --bs-link-color: var(--cy-accent);
+  --bs-link-hover-color: var(--cy-accent-hover);
+  --bs-secondary-bg: var(--cy-bg-base);
+}
+
+html,
+body {
+  background-color: var(--cy-bg-base) !important;
+  color: var(--cy-text-primary) !important;
+}
+
+a {
+  color: var(--cy-accent);
+}
+
+a:hover {
+  color: var(--cy-accent-hover);
+}
+
+.folder_list {
+  background-color: var(--cy-bg-surface) !important;
+  border-right: 1px solid var(--cy-border-subtle);
+}
+
+.folders li:hover {
+  background-color: var(--cy-bg-hover);
+}
+
+.folders li {
+  padding: 0.35rem 0.5rem;
+  margin: 0.1rem 0;
+}
+
+li.selected_menu {
+  background-color: var(--cy-accent-subtle) !important;
+  box-shadow: inset 2px 0 0 var(--cy-accent);
+}
+
+li.selected_menu a {
+  color: var(--cy-accent) !important;
+}
+
+.src_name {
+  border-bottom-color: var(--cy-border-subtle);
+}
+
+.content_cell,
+.message_list,
+.msg_text,
+.server_content,
+.profile_content,
+.user_settings,
+.search_content {
+  background-color: var(--cy-bg-elevated) !important;
+  color: var(--cy-text-primary) !important;
+}
+
+.content_title {
+  border-color: var(--cy-border) !important;
+  color: var(--cy-text-primary);
+  background-color: var(--cy-bg-surface);
+}
+
+.message_table > tbody > tr > td {
+  border-bottom-color: var(--cy-border-subtle);
+}
+
+.message_table > tbody > tr:hover > td {
+  background-color: var(--cy-bg-hover);
+}
+
+.from,
+.subject,
+.msg_text .js-header_subject {
+  color: var(--cy-text-primary) !important;
+}
+
+.msg_date,
+.source,
+.title,
+.server_title,
+.list_controls,
+.text-secondary {
+  color: var(--cy-text-muted) !important;
+}
+
+.compose_page,
+.compose_container {
+  background-color: var(--cy-bg-elevated) !important;
+  border-color: var(--cy-border) !important;
+}
+
+.compose_to,
+.compose_bcc,
+.compose_cc,
+.compose_subject,
+.form-control,
+.form-select {
+  background-color: var(--cy-bg-input) !important;
+  border-color: var(--cy-border) !important;
+  color: var(--cy-text-primary) !important;
+}
+
+.form-control::placeholder {
+  color: var(--cy-text-muted) !important;
+}
+
+.form-control:focus,
+.form-select:focus,
+.compose_to:focus,
+.compose_bcc:focus,
+.compose_cc:focus,
+.compose_subject:focus {
+  background-color: var(--cy-bg-input) !important;
+  border-color: var(--cy-accent) !important;
+  box-shadow: 0 0 0 2px var(--cy-accent-subtle) !important;
+}
+
+.btn-primary,
+.smtp_send {
+  background-color: var(--cy-accent) !important;
+  border-color: var(--cy-accent) !important;
+}
+
+.btn-primary:hover,
+.smtp_send:hover {
+  background-color: var(--cy-accent-hover) !important;
+  border-color: var(--cy-accent-hover) !important;
+}
+
+.btn-light,
+.btn-secondary,
+.btn-outline-secondary {
+  background-color: var(--cy-bg-hover) !important;
+  border-color: var(--cy-border) !important;
+  color: var(--cy-text-primary) !important;
+}
+
+.btn-light:hover,
+.btn-secondary:hover,
+.btn-outline-secondary:hover {
+  background-color: #353d4a !important;
+  border-color: #4a5567 !important;
+}
+
+.dropdown-menu,
+.list_settings_dialog,
+.list_sources,
+.list_actions,
+#list_controls_menu,
+.modal-content,
+.confirm_logout,
+.draft_list {
+  background-color: var(--cy-bg-elevated) !important;
+  border-color: var(--cy-border) !important;
+}
+
+.dropdown-item {
+  color: var(--cy-text-primary) !important;
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
+  background-color: var(--cy-bg-hover) !important;
+}
+
+.total_unread_count,
+.unread_count {
+  background-color: var(--cy-accent) !important;
+  color: #fff !important;
+}
+
+#theme_setting,
+#timezone_setting {
+  background-color: var(--cy-bg-input) !important;
+  color: var(--cy-text-primary) !important;
+}
+
+.setting_description {
+  color: var(--cy-text-muted);
 }
