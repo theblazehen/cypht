@@ -486,12 +486,15 @@ button {
   cursor: pointer;
   padding-left: 25px;
   margin-top: 0px;
-  border-bottom: solid 1px var(--bs-secondary-bg);
+  border-bottom: solid 1px var(--bs-border-color);
   padding-top: 10px;
-  font-size: 125%;
-  letter-spacing: -1px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
   padding-bottom: 10px;
-  transition: border-bottom-color 0.3s linear;
+  border-radius: 4px;
+  transition: border-bottom-color 0.3s linear, background-color 0.2s ease;
 }
 .src_name > i {
   transition: transform 0.3s;
@@ -504,13 +507,21 @@ button {
 }
 .content_title {
   margin-top: 0px;
-  border-bottom: solid 1px var(--bs-secondary-bg);
-  border-top: solid 1px var(--bs-secondary-bg);
+  border-bottom: solid 1px var(--bs-border-color);
+  border-top: solid 1px var(--bs-border-color);
   padding-bottom: 15px;
   padding-top: 15px;
   letter-spacing: -0.25px;
   gap: 1rem;
-  font-size: 1.25rem;
+  font-size: 14px;
+  font-weight: 600;
+  background-color: var(--bs-body-bg);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+.mobile .content_title {
+  position: static;
 }
 .header_subject .content_title {
   color: var(--bs-secondary-color);
@@ -1561,11 +1572,14 @@ nav.collapsed .sidebar-footer a {
 /* End collapsed navbar state */
 
 .sidebar-footer {
-  margin-top: 35px;
+  margin-top: auto;
   display: flex;
   justify-content: space-between;
   padding: 0 15px 0 25px;
   font-size: 0.8rem;
+  border-top: 1px solid var(--bs-border-color);
+  padding-top: 12px;
+  padding-bottom: 12px;
 }
 
 .logout_link {
@@ -1683,7 +1697,12 @@ pre.msg_source {
 .folder_cell.collapsed .folders { margin-left: 15px !important; }
 .move_to_location .folders { margin-left: 10px !important; }
 .inner_list .unread_count { padding: 0px 6px; }
-.msg_controls { margin-left: 5px; }
+.msg_controls {
+  margin-left: 5px;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
 #dropdownMenuForward + ul .forward_link span,
 #contact_info + #contact_popup span { white-space: nowrap; }
 
@@ -1694,6 +1713,8 @@ pre.msg_source {
 .msg_actions .btn-outline-secondary {
   color: var(--bs-link-color) !important; border-color: var(--bs-link-color) !important;
   background: var(--bs-body-bg);
+  border-radius: 6px;
+  padding: 0.25rem 0.65rem;
 }
 .allow_image_link .btn-light:hover, .definitive_actions .btn-light:hover,
 .content_title .msg_controls .btn-light:hover,

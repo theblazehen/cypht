@@ -28,6 +28,14 @@
   --bs-link-color: var(--cy-accent);
   --bs-link-hover-color: var(--cy-accent-hover);
   --bs-secondary-bg: var(--cy-bg-base);
+  --bs-tertiary-bg: var(--cy-bg-hover);
+  --bs-primary-bg-subtle: var(--cy-accent-subtle);
+  --bs-emphasis-color: var(--cy-text-primary);
+  --bs-secondary-color: var(--cy-text-secondary);
+  --bs-tertiary-color: var(--cy-text-muted);
+  --bs-focus-ring-color: rgba(90, 159, 212, 0.35);
+  --bs-table-hover-bg: var(--cy-bg-hover);
+  --bs-table-hover-color: var(--cy-text-primary);
 }
 
 html,
@@ -69,6 +77,11 @@ li.selected_menu a {
 
 .src_name {
   border-bottom-color: var(--cy-border-subtle);
+}
+
+.src_name:hover {
+  background-color: var(--cy-bg-hover);
+  border-radius: 4px;
 }
 
 .content_cell,
