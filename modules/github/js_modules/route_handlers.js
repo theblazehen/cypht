@@ -65,7 +65,7 @@ function refreshAll(dataSources, background = false) {
                 }
                 
                 const rowUid = $(row).data('uid');
-                const tableRow = Hm_Utils.tbody().find(`tr[data-uid="${rowUid}"]`);
+                const tableRow = Hm_Utils.tbody().find(`.msg-row[data-uid="${rowUid}"]`);
                 if (!tableRow.length) {
                     if (Hm_Utils.rows().length >= index) {
                         Hm_Utils.rows().eq(index).after(row);
