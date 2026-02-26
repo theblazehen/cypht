@@ -17,10 +17,14 @@
   --cy-border-subtle: #2d3440;
   --cy-text-primary: #d8dee7;
   --cy-text-secondary: #9ba5b5;
-  --cy-text-muted: #7f8897;
+  --cy-text-muted: #8b95a5;
   --cy-accent: #5a9fd4;
   --cy-accent-hover: #7ab4df;
   --cy-accent-subtle: rgba(90, 159, 212, 0.18);
+  --cy-on-accent: #fff;
+  --cy-warning: #ffc107;
+  --cy-danger: #f8717f;
+  --cy-success: #59d89e;
 
   --bs-body-bg: var(--cy-bg-surface);
   --bs-body-color: var(--cy-text-primary);
@@ -57,40 +61,30 @@ a:hover {
   border-right: 1px solid var(--cy-border-subtle);
 }
 
-.folders li:hover {
-  background-color: var(--cy-bg-hover);
-}
+/* Issue 1: .folders li:hover dead code removed (overridden by later rule) */
 
 .folders li {
   padding: 0.35rem 0.5rem;
   margin: 0.1rem 0;
 }
 
-li.selected_menu {
-  background-color: var(--cy-accent-subtle) !important;
-  box-shadow: inset 2px 0 0 var(--cy-accent);
-}
+/* Issue 2: li.selected_menu + li.selected_menu a dead code removed (overridden by later rules) */
 
-li.selected_menu a {
-  color: var(--cy-accent) !important;
-}
-
-.src_name {
-  border-bottom-color: var(--cy-border-subtle);
-}
+/* Issue 3: .src_name border-bottom-color dead code removed (overridden by shorthand below) */
 
 .src_name:hover {
   background-color: var(--cy-bg-hover);
   border-radius: 4px;
 }
 
+/* Issue 17: .server_title removed — canonical standalone rule kept below */
+/* Issue 21: .search_content removed — standalone override rule kept below */
 .content_cell,
 .message_list,
 .msg_text,
 .server_content,
 .profile_content,
-.user_settings,
-.search_content {
+.user_settings {
   background-color: var(--cy-bg-elevated) !important;
   color: var(--cy-text-primary) !important;
 }
@@ -115,10 +109,10 @@ li.selected_menu a {
   color: var(--cy-text-primary) !important;
 }
 
+/* Issue 17: .server_title removed from this group — canonical standalone rule kept below */
 .msg_date,
 .source,
 .title,
-.server_title,
 .list_controls,
 .text-secondary {
   color: var(--cy-text-muted) !important;
@@ -207,7 +201,7 @@ li.selected_menu a {
 .total_unread_count,
 .unread_count {
   background-color: var(--cy-accent) !important;
-  color: #fff !important;
+  color: var(--cy-on-accent) !important;
 }
 
 #theme_setting,
@@ -216,9 +210,7 @@ li.selected_menu a {
   color: var(--cy-text-primary) !important;
 }
 
-.setting_description {
-  color: var(--cy-text-muted);
-}
+/* Issue 18: .setting_description without !important removed — canonical rule with !important kept below */
 
 /* --- Midnight polish: global micro-interactions and accessibility --- */
 html {
@@ -230,32 +222,40 @@ html {
   color: var(--cy-text-primary);
 }
 
-* {
+/* Issue 22: Scoped scrollbar selectors to specific scroll containers */
+html, body, .folder_list, .message_list, .content_cell, .msg_text, .msg_text_inner, textarea, .contact-group > ul, .search_content {
   scrollbar-width: thin;
   scrollbar-color: var(--cy-border) var(--cy-bg-base);
 }
 
-*::-webkit-scrollbar {
+html::-webkit-scrollbar, body::-webkit-scrollbar, .folder_list::-webkit-scrollbar, .message_list::-webkit-scrollbar, .content_cell::-webkit-scrollbar, .msg_text::-webkit-scrollbar, .msg_text_inner::-webkit-scrollbar, textarea::-webkit-scrollbar, .contact-group > ul::-webkit-scrollbar, .search_content::-webkit-scrollbar {
   width: 10px;
   height: 10px;
 }
 
-*::-webkit-scrollbar-track {
+html::-webkit-scrollbar-track, body::-webkit-scrollbar-track, .folder_list::-webkit-scrollbar-track, .message_list::-webkit-scrollbar-track, .content_cell::-webkit-scrollbar-track, .msg_text::-webkit-scrollbar-track, .msg_text_inner::-webkit-scrollbar-track, textarea::-webkit-scrollbar-track, .contact-group > ul::-webkit-scrollbar-track, .search_content::-webkit-scrollbar-track {
   background: var(--cy-bg-base);
 }
 
-*::-webkit-scrollbar-thumb {
+html::-webkit-scrollbar-thumb, body::-webkit-scrollbar-thumb, .folder_list::-webkit-scrollbar-thumb, .message_list::-webkit-scrollbar-thumb, .content_cell::-webkit-scrollbar-thumb, .msg_text::-webkit-scrollbar-thumb, .msg_text_inner::-webkit-scrollbar-thumb, textarea::-webkit-scrollbar-thumb, .contact-group > ul::-webkit-scrollbar-thumb, .search_content::-webkit-scrollbar-thumb {
   background: linear-gradient(180deg, #485064, #3a4252);
   border: 2px solid var(--cy-bg-base);
   border-radius: 999px;
 }
 
-*::-webkit-scrollbar-thumb:hover {
+html::-webkit-scrollbar-thumb:hover, body::-webkit-scrollbar-thumb:hover, .folder_list::-webkit-scrollbar-thumb:hover, .message_list::-webkit-scrollbar-thumb:hover, .content_cell::-webkit-scrollbar-thumb:hover, .msg_text::-webkit-scrollbar-thumb:hover, .msg_text_inner::-webkit-scrollbar-thumb:hover, textarea::-webkit-scrollbar-thumb:hover, .contact-group > ul::-webkit-scrollbar-thumb:hover, .search_content::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(180deg, #586178, #454f62);
 }
 
+/* Issue 23: Removed transform from global transition; added reduced-motion guard */
 :where(a, button, .btn, input, textarea, select, .folders li, .dropdown-item, .menu-toggle) {
-  transition: color 0.18s ease, background-color 0.18s ease, border-color 0.18s ease, box-shadow 0.2s ease, transform 0.16s ease;
+  transition: color 0.18s ease, background-color 0.18s ease, border-color 0.18s ease, box-shadow 0.2s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :where(a, button, .btn, input, textarea, select, .folders li, .dropdown-item, .menu-toggle) {
+    transition: none;
+  }
 }
 
 :where(a, button, .btn, input, textarea, select):focus-visible {
@@ -360,7 +360,7 @@ body:has(.logout_form) {
   border-radius: 10px;
   background: linear-gradient(180deg, var(--cy-accent-hover), var(--cy-accent));
   border: 1px solid color-mix(in srgb, var(--cy-accent) 70%, white 30%);
-  color: #fff;
+  color: var(--cy-on-accent);
   font-weight: 600;
   letter-spacing: 0.015em;
   box-shadow: 0 10px 24px rgba(90, 159, 212, 0.25);
@@ -429,10 +429,11 @@ textarea.compose_body,
   background-color: var(--cy-bg-input) !important;
 }
 
+/* Issue 6: Merged unique `color: !important` from duplicate into canonical rule */
 .bubble {
   background-color: color-mix(in srgb, var(--cy-bg-elevated) 88%, black 12%);
   border-color: var(--cy-border-subtle);
-  color: var(--cy-text-primary);
+  color: var(--cy-text-primary) !important;
   border-radius: 999px;
   padding: 0.35rem 0.72rem;
 }
@@ -581,52 +582,7 @@ li.selected_menu a {
  * ============================================================ */
 
 /* --- modules/smtp/site.css (compose page) --- */
-
-.compose_page {
-  background-color: var(--cy-bg-elevated) !important;
-}
-
-.bubbles {
-  background-color: var(--cy-bg-input) !important;
-}
-
-.bubble {
-  border-color: var(--cy-border) !important;
-  color: var(--cy-text-primary) !important;
-}
-
-.bubble:hover {
-  background-color: var(--cy-bg-hover) !important;
-}
-
-.bubble.bubble_selected {
-  background-color: var(--cy-accent-subtle) !important;
-  border-color: var(--cy-accent) !important;
-}
-
-.bubble_dropdown {
-  background-color: var(--cy-bg-input) !important;
-}
-
-.bubble_dropdown-content {
-  background-color: var(--cy-bg-elevated) !important;
-  border-color: var(--cy-border) !important;
-}
-
-.bubble_dropdown-content ul li span,
-.bubble_dropdown-content ul li a {
-  color: var(--cy-text-primary) !important;
-}
-
-.bubble_dropdown-content ul li span:hover,
-.bubble_dropdown-content ul li a:hover {
-  background-color: var(--cy-bg-hover) !important;
-}
-
-.draft_list {
-  background-color: var(--cy-bg-elevated) !important;
-  border-color: var(--cy-border) !important;
-}
+/* Issues 4-12: Duplicate compose/bubble rules removed. Canonical rules above. */
 
 .CodeMirror {
   border-color: var(--cy-border) !important;
@@ -669,9 +625,7 @@ li.selected_menu a {
   color: var(--cy-text-primary) !important;
 }
 
-.no_contact_sources {
-  color: var(--cy-text-muted) !important;
-}
+/* Issue 20: .no_contact_sources standalone removed — covered by empty states group below */
 
 .contact-group > label {
   background: var(--cy-bg-hover) !important;
@@ -755,9 +709,7 @@ li.selected_menu a {
 
 /* --- modules/imap/site.css --- */
 
-.msg_text {
-  background-color: var(--cy-bg-elevated) !important;
-}
+/* Issue 15: Standalone .msg_text duplicate removed — covered by multi-selector group above */
 
 .imap_envelope {
   color: var(--cy-text-secondary) !important;
@@ -778,9 +730,7 @@ li.selected_menu a {
   color: var(--cy-text-muted) !important;
 }
 
-.empty_list {
-  color: var(--cy-text-muted) !important;
-}
+/* Issue 19: Standalone .empty_list duplicate removed — covered by empty states group below */
 
 .imap_server_setup {
   background-color: var(--cy-bg-elevated) !important;
@@ -875,8 +825,10 @@ li.selected_menu a {
   border-color: var(--cy-border) !important;
 }
 
+/* Issue 21: Standalone .search_content override kept for module-level specificity */
 .search_content {
   background: var(--cy-bg-elevated) !important;
+  color: var(--cy-text-primary) !important;
 }
 
 .page_links a {
@@ -915,9 +867,7 @@ li.selected_menu a {
   background-color: var(--cy-bg-elevated) !important;
 }
 
-.content_cell {
-  background-color: var(--cy-bg-elevated) !important;
-}
+/* Issue 14: Standalone .content_cell duplicate removed — covered by multi-selector group above */
 
 .nofrom {
   color: var(--cy-text-muted) !important;
@@ -948,7 +898,7 @@ button {
 .smtp_send:focus {
   background-color: var(--cy-accent) !important;
   border-color: var(--cy-accent) !important;
-  color: #fff !important;
+  color: var(--cy-on-accent) !important;
 }
 
 .list_settings_dialog table th {
@@ -990,6 +940,7 @@ button {
   color: var(--cy-text-muted) !important;
 }
 
+/* Issue 17: Canonical .server_title rule */
 .server_title {
   color: var(--cy-text-secondary) !important;
 }
@@ -1105,7 +1056,7 @@ button {
 }
 .nux_welcome .card-body > .mb-3 > a.btn:hover {
   background: linear-gradient(180deg, var(--cy-accent-hover), var(--cy-accent)) !important;
-  color: #fff !important;
+  color: var(--cy-on-accent) !important;
   border-color: var(--cy-accent-hover) !important;
   box-shadow: 0 8px 24px rgba(90, 159, 212, 0.3) !important;
 }
@@ -1126,7 +1077,7 @@ button {
 }
 .nux_welcome ul li a:hover {
   background-color: var(--cy-accent) !important;
-  color: #fff !important;
+  color: var(--cy-on-accent) !important;
 }
 
 /* Timezone notice – dark info bar */
@@ -1289,7 +1240,7 @@ button {
 
 .header_links a:not(.dropdown-item):not(.dropdown-toggle):hover {
   background-color: var(--cy-accent) !important;
-  color: #fff !important;
+  color: var(--cy-on-accent) !important;
   border-color: var(--cy-accent) !important;
   box-shadow: 0 4px 12px rgba(90, 159, 212, 0.25);
 }
@@ -1307,7 +1258,7 @@ button {
 .msg_controls .btn-secondary:hover,
 .msg_controls .btn-outline-secondary:hover {
   background-color: var(--cy-accent) !important;
-  color: #fff !important;
+  color: var(--cy-on-accent) !important;
   border-color: var(--cy-accent) !important;
 }
 
@@ -1382,10 +1333,7 @@ button {
   color: var(--cy-text-muted) !important;
 }
 
-/* Date column muted */
-.msg_date {
-  color: var(--cy-text-muted) !important;
-}
+/* Issue 16: Standalone .msg_date duplicate removed — covered by muted text group above */
 
 /* Icon hover brightness */
 .message_table > tbody > tr:hover .icon img {
@@ -1410,22 +1358,23 @@ button {
   border-color: var(--cy-border);
 }
 
+/* Issue 25: Alert colors using semantic tokens */
 .alert-warning {
   background-color: rgba(255, 193, 7, 0.12) !important;
   border-color: rgba(255, 193, 7, 0.3) !important;
-  color: #ffc107 !important;
+  color: var(--cy-warning) !important;
 }
 
 .alert-danger {
   background-color: rgba(220, 53, 69, 0.12) !important;
   border-color: rgba(220, 53, 69, 0.3) !important;
-  color: #f8717f !important;
+  color: var(--cy-danger) !important;
 }
 
 .alert-success {
   background-color: rgba(25, 135, 84, 0.12) !important;
   border-color: rgba(25, 135, 84, 0.3) !important;
-  color: #59d89e !important;
+  color: var(--cy-success) !important;
 }
 
 .alert-info {
