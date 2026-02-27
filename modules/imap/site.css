@@ -66,14 +66,14 @@
   width: 50px;
 }
 .msg_text {
-  min-height: 600px;
+  min-height: 0;
   background-color: var(--bs-body-bg);
   height: 100%;
   padding: calc(var(--bs-gutter-x) * .5);
   /* max-width: 95% !important; */
 }
 .msg_text_inner {
-  min-height: 300px;
+  min-height: 0;
   font-family: monospace;
   padding: 20px;
 }
